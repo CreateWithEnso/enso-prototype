@@ -254,14 +254,6 @@
 </head>
 <body>
 
-  /* Hardcoded underline for visual consistency */
-.hardcoded-underline {
-  width: 80vw;
-  height: 2px;
-  background-color: #FF1493;
-  margin: 35px auto 0;
-}
-  
   <!-- Background overlay -->
   <div id="background"></div>
 
@@ -287,10 +279,8 @@
       <div id="glitch-b" class="glitch-layer"></div>
     </div>
   </div>
+  <div class="hardcoded-underline"></div>
 </div>
-
-<!-- Underline placed separately -->
-<div class="hardcoded-underline"></div>
   
   <!-- Custom cursor -->
   <div class="custom-cursor" id="cursor"></div>
@@ -358,10 +348,10 @@
       // Apply changes to all layers
       [white, r, g, b].forEach(el => {
         el.textContent = phrase.text;
-        el.style.fontFamily = `'${font}'`;
+        el.style.fontFamily = '${font}';
         el.style.fontStyle = fontStyle;
         el.style.fontSize = fontSize;
-        el.style.top = `calc(50% + ${topOffset})`;
+        el.style.top = calc(50% + ${topOffset});
         
         // Force consistent positioning
         el.style.transform = el.style.transform || 'translateY(-50%)';
@@ -381,9 +371,9 @@
       const x = Math.cos(angleRad) * maxOffset;
       const y = Math.sin(angleRad) * maxOffset;
 
-      r.style.transform = `translate(${-x}px, ${-y}px) translateY(-50%)`;
-      g.style.transform = `translate(${x}px, ${-y}px) translateY(-50%)`;
-      b.style.transform = `translate(${x}px, ${y}px) translateY(-50%)`;
+      r.style.transform = translate(${-x}px, ${-y}px) translateY(-50%);
+      g.style.transform = translate(${x}px, ${-y}px) translateY(-50%);
+      b.style.transform = translate(${x}px, ${y}px) translateY(-50%);
 
       mouseStopped = false;
       lastMove = Date.now();
@@ -402,8 +392,8 @@
       // Update cursor position
       mouseX = e.clientX;
       mouseY = e.clientY;
-      cursor.style.left = `${mouseX}px`;
-      cursor.style.top = `${mouseY}px`;
+      cursor.style.left = ${mouseX}px;
+      cursor.style.top = ${mouseY}px;
       
       // Only apply glitch effect after intro animation completes
       if (!introAnimationComplete) return;
@@ -446,9 +436,9 @@
           const interval = setInterval(() => {
             const x = Math.cos(angle) * 4;
             const y = Math.sin(angle) * 2;
-            r.style.transform = `translate(${-x}px, ${-y}px) translateY(-50%)`;
-            g.style.transform = `translate(${x}px, ${-y}px) translateY(-50%)`;
-            b.style.transform = `translate(${x}px, ${y}px) translateY(-50%)`;
+            r.style.transform = translate(${-x}px, ${-y}px) translateY(-50%);
+            g.style.transform = translate(${x}px, ${-y}px) translateY(-50%);
+            b.style.transform = translate(${x}px, ${y}px) translateY(-50%);
             angle += 0.5;
           }, 16);
           
@@ -490,9 +480,9 @@
               const interval = setInterval(() => {
                 const x = Math.cos(angle) * 3;
                 const y = Math.sin(angle) * 1.5;
-                r.style.transform = `translate(${-x}px, ${-y}px) translateY(-50%)`;
-                g.style.transform = `translate(${x}px, ${-y}px) translateY(-50%)`;
-                b.style.transform = `translate(${x}px, ${y}px) translateY(-50%)`;
+                r.style.transform = translate(${-x}px, ${-y}px) translateY(-50%);
+                g.style.transform = translate(${x}px, ${-y}px) translateY(-50%);
+                b.style.transform = translate(${x}px, ${y}px) translateY(-50%);
                 angle += 0.25;
               }, 16);
               await new Promise(res => setTimeout(res, delay));
@@ -532,9 +522,9 @@
           const interval = setInterval(() => {
             const x = Math.cos(angle) * 4; // More aggressive glitch
             const y = Math.sin(angle) * 2; // More aggressive glitch
-            r.style.transform = `translate(${-x}px, ${-y}px) translateY(-50%)`;
-            g.style.transform = `translate(${x}px, ${-y}px) translateY(-50%)`;
-            b.style.transform = `translate(${x}px, ${y}px) translateY(-50%)`;
+            r.style.transform = translate(${-x}px, ${-y}px) translateY(-50%);
+            g.style.transform = translate(${x}px, ${-y}px) translateY(-50%);
+            b.style.transform = translate(${x}px, ${y}px) translateY(-50%);
             angle += 0.5; // Faster oscillation
           }, 16);
           
@@ -589,14 +579,14 @@
       // Step 2: Animate underline in from left to right
       setTimeout(() => {
         console.log("Drawing underline");
-        underline.style.transition = `transform ${TIMING.UNDERLINE_DRAW}ms cubic-bezier(0.25, 0.1, 0.25, 1)`;
+        underline.style.transition = transform ${TIMING.UNDERLINE_DRAW}ms cubic-bezier(0.25, 0.1, 0.25, 1);
         underline.style.transform = 'translateX(0)';
         
         // Step 3: Pause before underline disappears
         setTimeout(() => {
           console.log("Preparing to hide underline");
           // Step 4: Make underline disappear from left to right (using the mask)
-          underlineMask.style.transition = `width ${TIMING.UNDERLINE_HIDE}ms cubic-bezier(0.25, 0.1, 0.25, 1)`;
+          underlineMask.style.transition = width ${TIMING.UNDERLINE_HIDE}ms cubic-bezier(0.25, 0.1, 0.25, 1);
           underlineMask.style.width = '100%';
           
           // Completely hide the underline container after mask animation
