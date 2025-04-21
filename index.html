@@ -127,15 +127,15 @@
     }
 
     /* Underline container - Perfect length adjustment */
-    .underline-container {
-      position: relative;
-      height: 1px; /* Thin line */
-      width: 98%; /* Slightly reduced width */
-      max-width: 640px; /* Fine-tuned maximum width */
-      margin: 30px auto 0; /* Good spacing between text and line */
-      overflow: visible;
-      z-index: 25;
-    }
+.underline-container {
+  position: relative;
+  height: 1px;
+  width: 100%;         /* make it full-width */
+  max-width: none;     /* remove any cap */
+  margin: 30px auto 0;
+  overflow: visible;
+  z-index: 25;
+}
 
     .underline-inner {
       position: relative;
