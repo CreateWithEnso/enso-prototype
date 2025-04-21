@@ -127,14 +127,15 @@
     }
 
     /* Underline container - Perfect length adjustment */
-.underline-container {
-  position: relative;
-  height: 1px;
-  width: 100%;         /* make it full-width */
-  max-width: none;     /* remove any cap */
-  margin: 30px auto 0;
-  overflow: visible;
-  z-index: 25;
+.underline {
+  position: absolute;
+  top: 0;
+  left: 50%;                            /* Center the start */
+  transform: translate(-50%, -101%);   /* Offset it so it animates in from the left */
+  height: 100%;
+  width: 100%;
+  background-color: #FF1493;
+  will-change: transform;
 }
 
     .underline-inner {
