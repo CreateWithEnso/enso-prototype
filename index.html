@@ -1,4 +1,4 @@
-!DOCTYPE html>
+@!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -323,8 +323,6 @@
     const r = document.getElementById("glitch-r");
     const g = document.getElementById("glitch-g");
     const b = document.getElementById("glitch-b");
-    const waveMask = document.getElementById("wave-mask");
-    const turbulence = document.getElementById("turbulence");
     const video = document.getElementById("background-video");
     
     // Container elements
@@ -411,7 +409,6 @@
       lastMouseY = e.clientY;
 
       updateGlitchOffset(dx, dy);
-      updateWaveDistortion(e.clientX / window.innerWidth);
 
       const movement = Math.sqrt(dx * dx + dy * dy);
       const now = Date.now();
@@ -422,38 +419,7 @@
       }
     }
 
-    // Enhanced wave distortion effect for video
-    function updateWaveDistortion(xPosition = 0.5) {
-      // Handle mouse position as input
-      const distanceFromCenter = Math.abs(xPosition - 0.75); // Center of right panel
-      const intensity = Math.max(0, 1 - distanceFromCenter * 2) * 0.7;
-      
-      // Apply wave distortion
-      waveMask.style.opacity = 0.4 + (intensity * 0.5);
-      
-      // Control turbulence values based on mouse position
-      const baseFreqX = 0.02 + (intensity * 0.02);
-      const baseFreqY = 0.02 + (intensity * 0.02);
-      turbulence.setAttribute('baseFrequency', `${baseFreqX} ${baseFreqY}`);
-    }
-
-    // Animate wave distortion over time
-    function animateWaves() {
-      waveTime += 0.01;
-      
-      // Vary the turbulence parameters over time
-      const timeX = Math.sin(waveTime) * 0.005 + 0.02;
-      const timeY = Math.cos(waveTime * 0.8) * 0.005 + 0.02;
-      turbulence.setAttribute('baseFrequency', `${timeX} ${timeY}`);
-      
-      // Pulse the opacity
-      const opacityPulse = (Math.sin(waveTime * 2) * 0.15) + 0.45;
-      waveMask.style.opacity = opacityPulse;
-      
-      // Increase the seed for movement
-      turbulence.setAttribute('seed', Math.floor(waveTime * 10) % 100);
-    }
-
+ 
     // Mobile sequence for glitch animation
     function mobileSequence() {
       const introSequence = [0, 1, 3, 5]; // Same as desktop intro sequence
@@ -644,13 +610,7 @@
               setTimeout(() => {
                 console.log("Starting glitch animation");
                 introAnimationComplete = true;
-                
-                // Start wave animation
-                waveInterval = setInterval(animateWaves, 16);
-                
-                // Ensure the wave mask is visible initially
-                waveMask.style.opacity = 0.4;
-                
+                                
                 if (mobile) {
                   mobileSequence();
                 } else {
@@ -691,11 +651,6 @@
       // Start animation anyway if video fails
       startIntroAnimation();
     });
-    
-    // Make sure the wave mask is initially visible
-    if (waveMask) {
-      waveMask.style.opacity = '0.4';
-    }
     
     // Start animation anyway if video takes too long
     setTimeout(() => {
