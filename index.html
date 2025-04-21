@@ -115,20 +115,6 @@
       object-fit: cover;
     }
 
-    /* Video wave effect mask */
-    .wave-mask {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-      background: #000;
-      opacity: 0.4;
-      mix-blend-mode: difference;
-      filter: url('#wave-filter');
-    }
-
     /* Title styles */
     .title-container {
       position: absolute;
@@ -265,13 +251,6 @@
   </style>
 </head>
 <body>
-  <!-- SVG Filters for wave distortion -->
-  <svg width="0" height="0" style="position: absolute;">
-    <filter id="wave-filter">
-      <feTurbulence type="turbulence" baseFrequency="0.02 0.02" numOctaves="3" seed="1" id="turbulence" />
-      <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="35" xChannelSelector="R" yChannelSelector="G" />
-    </filter>
-  </svg>
 
   <!-- Background overlay -->
   <div id="background"></div>
@@ -285,7 +264,6 @@
       <video id="background-video" autoplay loop muted playsinline>
         <source src="https://raw.githubusercontent.com/CreateWithEnso/enso-assets/main/temp%20showreel%201.mp4" type="video/mp4">
       </video>
-      <div class="wave-mask" id="wave-mask"></div>
     </div>
   </div>
 
