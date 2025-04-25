@@ -1,664 +1,133 @@
-@!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ENSO STUDIOS</title>
-  <style>
-    /* Font faces */
-    @font-face {
-      font-family: 'Bodoni Moda';
-      src: url('https://raw.githubusercontent.com/CreateWithEnso/enso-fonts/main/BodoniModa_28pt-Italic.ttf') format('truetype');
-      font-style: italic;
-    }
-    @font-face {
-      font-family: 'Nunito';
-      src: url('https://raw.githubusercontent.com/CreateWithEnso/enso-fonts/main/Nunito-VariableFont_wght.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'Calistoga';
-      src: url('https://raw.githubusercontent.com/CreateWithEnso/enso-fonts/main/Calistsoga-Regular.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'Barlow ExtraBold';
-      src: url('https://raw.githubusercontent.com/CreateWithEnso/enso-fonts/main/Barlow-ExtraBold.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'Pixels';
-      src: url('https://raw.githubusercontent.com/CreateWithEnso/enso-fonts/main/Pixels.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'IBM Plex Serif Thin';
-      src: url('https://raw.githubusercontent.com/CreateWithEnso/enso-fonts/main/IBM%20Plex%20Serif%20Thin.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'Sofia Pro';
-      src: url('https://raw.githubusercontent.com/CreateWithEnso/enso-fonts/main/%239Slide03%20Sofia%20Pro%20Soft%20Light.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'DM Mono';
-      src: url('https://raw.githubusercontent.com/CreateWithEnso/enso-fonts/main/DMMono-Light.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'Montserrat ExtraBold';
-      src: url('https://raw.githubusercontent.com/CreateWithEnso/enso-fonts/main/Montserrat-ExtraBold.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'Rig Shaded';
-      src: url('https://raw.githubusercontent.com/CreateWithEnso/enso-fonts/main/Rig%20Shaded%20Zero%20Extrude.ttf') format('truetype');
-    }
-
-    /* Core styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      cursor: none; /* Hide default cursor */
-    }
-
-    /* Initial state: black fullscreen background */
-    #background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: black;
-      z-index: 10;
-      opacity: 1;
-      transition: opacity 0.6s ease-in-out;
-      pointer-events: none; /* Allow clicking through to elements beneath */
-    }
-
-    /* Split screen container */
-    .split-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    /* Left panel: Static image */
-    .left-panel {
-      flex: 1;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    .left-panel img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Right panel: Video */
-    .right-panel {
-      flex: 1;
-      height: 100%;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .right-panel video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Title styles */
-    .title-container {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      transform: translateY(-50%);
-      z-index: 20;
-      text-align: center;
-    }
-
-    /* Underline container - Perfect length adjustment */
-.underline {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  height: 100%;
-  width: 120%; /* 👈 stretch line beyond the text */
-  background-color: #FF1493;
-  transform: translateX(-60%); /* 👈 center it perfectly */
-  will-change: transform;
-}
-
-.underline-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background-color: transparent;
-}
-
-.underline {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  height: 100%;
-  width: 100%;
-  background-color: #FF1493;
-  transform: translate(-50%, -101%); /* Center and move left to hide before anim */
-  will-change: transform;
-}
-
-.underline-mask {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  height: 100%;
-  width: 0%;
-  transform: translateX(-50%);
-  background-color: black;
-  z-index: 26;
-}
-
-    /* Custom cursor */
-    .custom-cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: white;
-      mix-blend-mode: difference;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 9999;
-      transition: width 0.1s, height 0.1s;
-    }
-
-    /* Glitch animation styles */
-    .glitch-container {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-    }
-
-    .text-wrapper {
-      position: relative;
-      width: 100%;
-      height: auto;
-    }
-
-    .glitch-layer {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
-      text-align: center;
-      white-space: nowrap;
-      font-size: 3.5vw;
-      line-height: 1;
-      transition: transform 0.08s ease-out;
-      opacity: 1;
-      transform-style: preserve-3d;
-      backface-visibility: hidden;
-      will-change: transform;
-      letter-spacing: 1px; /* Add letter spacing for better readability */
-    }
-
-    #glitch-white {
-      color: #FFFFFF;
-      z-index: 1;
-    }
-
-    #glitch-r {
-      color: #FF0000;
-      mix-blend-mode: screen;
-      z-index: 2;
-    }
-
-    #glitch-g {
-      color: #00FF00;
-      mix-blend-mode: screen;
-      z-index: 2;
-      opacity: 0.4;
-    }
-
-    #glitch-b {
-      color: #0000FF;
-      mix-blend-mode: screen;
-      z-index: 2;
-    }
-
-    /* Mobile responsiveness */
-    @media (max-width: 768px) {
-      .underline-container {
-        width: 80%;
-        max-width: 400px;
-      }
-      
-      .glitch-layer {
-        font-size: 4.5vw;
-      }
-    }
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #f25d7c; -webkit-text-stroke: #f25d7c}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #ac82f5; -webkit-text-stroke: #ac82f5}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #8ec757; -webkit-text-stroke: #8ec757}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #8893c3; -webkit-text-stroke: #8893c3}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #40466a; -webkit-text-stroke: #40466a}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #99a0cc; -webkit-text-stroke: #99a0cc; min-height: 14.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #8893c3; -webkit-text-stroke: #8893c3; min-height: 14.0px}
+    span.s1 {font-kerning: none; color: #a92285; background-color: #14141c; -webkit-text-stroke: 0px #a92285}
+    span.s2 {font-kerning: none; background-color: #14141c}
+    span.s3 {font-kerning: none; color: #d4415e; background-color: #14141c; -webkit-text-stroke: 0px #d4415e}
+    span.s4 {font-kerning: none; color: #ac82f5; background-color: #14141c; -webkit-text-stroke: 0px #ac82f5}
+    span.s5 {font-kerning: none; color: #79d5ff; background-color: #14141c; -webkit-text-stroke: 0px #79d5ff}
+    span.s6 {font-kerning: none; color: #8ec757; background-color: #14141c; -webkit-text-stroke: 0px #8ec757}
+    span.s7 {font-kerning: none; color: #8893c3; background-color: #14141c; -webkit-text-stroke: 0px #8893c3}
+    span.s8 {font-kerning: none; color: #f25d7c; background-color: #14141c; -webkit-text-stroke: 0px #f25d7c}
+    span.s9 {font-kerning: none}
+    span.s10 {font-kerning: none; color: #19abce; background-color: #14141c; -webkit-text-stroke: 0px #19abce}
   </style>
 </head>
 <body>
-
-  <!-- Background overlay -->
-  <div id="background"></div>
-
-  <!-- Split screen background -->
-  <div class="split-screen">
-    <div class="left-panel">
-      <img src="https://raw.githubusercontent.com/CreateWithEnso/enso-assets/main/2DF901D2-716B-401C-A64A-A128E67A1512_1_105_c.jpeg" alt="Enso Studios">
-    </div>
-    <div class="right-panel">
-      <video id="background-video" autoplay loop muted playsinline>
-        <source src="https://createwithenso.github.io/enso-assets/temp%20showreel%201.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-
-  <!-- Title container -->
-<div class="title-container">
-  <div class="glitch-container">
-    <div class="text-wrapper">
-      <div id="glitch-white" class="glitch-layer"></div>
-      <div id="glitch-r" class="glitch-layer"></div>
-      <div id="glitch-g" class="glitch-layer"></div>
-      <div id="glitch-b" class="glitch-layer"></div>
-    </div>
-  </div>
-  <div class="hardcoded-underline"></div>
-</div>
-  
-  <!-- Custom cursor -->
-  <div class="custom-cursor" id="cursor"></div>
-
-  <script>
-    // Animation sequence timing
-    const TIMING = {
-      START_DELAY: 300,
-      UNDERLINE_DRAW: 300,
-      UNDERLINE_PAUSE: 400,
-      UNDERLINE_HIDE: 300,
-      BACKGROUND_FADE: 600
-    };
-
-    // Phrases for glitch animation
-    const phrases = [
-      { text: "ENSO STUDIOS DANIEL VAMOSI", font: "Bodoni Moda", style: "italic" },
-      { text: "ENSO STUDIOS DANIEL VAMOSI", font: "Nunito" },
-      { text: "enso studios daniel vamosi", font: "Calistoga", style: "italic" },
-      { text: "ENSO STUDIOS DANIEL VAMOSI", font: "Barlow ExtraBold" },
-      { text: "ENSO STUDIOS DANIEL VAMOSI", font: "Pixels", size: "6.5vw", raise: true },
-      { text: "enso studios daniel vamosi", font: "IBM Plex Serif Thin", style: "italic" },
-      { text: "ENSO STUDIOS DANIEL VAMOSI", font: "Sofia Pro" },
-      { text: "[ en-so ] [ dan-yell ] [ vam-oh-see ]", font: "DM Mono", size: "2.975vw" },
-      { text: "endv", font: "Montserrat ExtraBold", style: "italic" },
-      { text: "e", font: "Rig Shaded", size: "4vw" },
-      { text: "E", font: "Bodoni Moda", style: "italic", size: "4vw" },
-      { text: "E", font: "Barlow ExtraBold", size: "4vw" }
-    ];
-
-    // DOM elements
-    const underline = document.getElementById("underline");
-    const underlineMask = document.getElementById("underline-mask");
-    const background = document.getElementById("background");
-    const cursor = document.getElementById("cursor");
-    const white = document.getElementById("glitch-white");
-    const r = document.getElementById("glitch-r");
-    const g = document.getElementById("glitch-g");
-    const b = document.getElementById("glitch-b");
-    const video = document.getElementById("background-video");
-    
-    // Container elements
-    const underlineContainer = document.querySelector(".underline-container");
-    const underlineInner = document.querySelector(".underline-inner");
-
-    // Animation state
-    let current = 0;
-    let lastMove = Date.now();
-    let lastPhaseChange = 0;
-    let lastMouseX = 0;
-    let lastMouseY = 0;
-    let mobile = /Mobi|Android/i.test(navigator.userAgent);
-    let mouseStopped = true;
-    let introAnimationComplete = false;
-    let mouseX = 0;
-    let mouseY = 0;
-
-    // Initialize with first phrase
-    function applyGlitch(phrase, glitchActive = false) {
-      const fontSize = phrase.size || "3.5vw";
-      const fontStyle = phrase.style || "normal";
-      const font = phrase.font;
-      const topOffset = phrase.raise ? "-3px" : "0px";
-
-      // Apply changes to all layers
-      [white, r, g, b].forEach(el => {
-        el.textContent = phrase.text;
-        el.style.fontFamily = `'${font}'`;
-        el.style.fontStyle = fontStyle;
-        el.style.fontSize = fontSize;
-        el.style.top = `calc(50% + ${topOffset})`;
-        
-        // Force consistent positioning
-        el.style.transform = el.style.transform || 'translateY(-50%)';
-      });
-
-      if (!glitchActive) {
-        [r, g, b].forEach(layer => layer.style.transform = 'translateY(-50%) translateX(0)');
-      }
-    }
-
-    // Update glitch offset based on mouse movement
-    function updateGlitchOffset(dx, dy) {
-      const velocity = Math.sqrt(dx * dx + dy * dy);
-      const maxOffset = Math.min(velocity * 0.06, 6.4);
-      const angleRad = Math.atan2(dy, dx);
-
-      const x = Math.cos(angleRad) * maxOffset;
-      const y = Math.sin(angleRad) * maxOffset;
-
-      r.style.transform = `translate(${-x}px, ${-y}px) translateY(-50%)`;
-      g.style.transform = `translate(${x}px, ${-y}px) translateY(-50%)`;
-      b.style.transform = `translate(${x}px, ${y}px) translateY(-50%)`;
-
-      mouseStopped = false;
-      lastMove = Date.now();
-    }
-
-    // Reset glitch position
-    function resetGlitch() {
-      [r, g, b].forEach(layer => {
-        layer.style.transform = 'translateY(-50%) translateX(0)';
-      });
-      mouseStopped = true;
-    }
-
-    // Handle mouse movement for glitch effect
-    function handleMouseMove(e) {
-      // Update cursor position
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursor.style.left = `${mouseX}px`;
-      cursor.style.top = `${mouseY}px`;
-      
-      // Only apply glitch effect after intro animation completes
-      if (!introAnimationComplete) return;
-
-      const dx = e.clientX - lastMouseX;
-      const dy = e.clientY - lastMouseY;
-      lastMouseX = e.clientX;
-      lastMouseY = e.clientY;
-
-      updateGlitchOffset(dx, dy);
-
-      const movement = Math.sqrt(dx * dx + dy * dy);
-      const now = Date.now();
-      if (now - lastPhaseChange > 100 && movement > 4) {
-        current = (current + 1) % phrases.length;
-        applyGlitch(phrases[current], true);
-        lastPhaseChange = now;
-      }
-    }
-
- 
-    // Mobile sequence for glitch animation
-    function mobileSequence() {
-      const introSequence = [0, 1, 3, 5]; // Same as desktop intro sequence
-      let idx = 0;
-      
-      // First do the ultra-fast initial sequence
-      function initialCycle() {
-        if (idx >= introSequence.length) {
-          // Move to the normal cycle after initial sequence
-          startRegularMobileCycle();
-          return;
-        }
-        
-        applyGlitch(phrases[introSequence[idx]], true);
-        
-        // Only apply glitch effect if not on the last phrase
-        if (idx < introSequence.length - 1) {
-          let angle = 0;
-          const interval = setInterval(() => {
-            const x = Math.cos(angle) * 4;
-            const y = Math.sin(angle) * 2;
-            r.style.transform = `translate(${-x}px, ${-y}px) translateY(-50%)`;
-            g.style.transform = `translate(${x}px, ${-y}px) translateY(-50%)`;
-            b.style.transform = `translate(${x}px, ${y}px) translateY(-50%)`;
-            angle += 0.5;
-          }, 16);
-          
-          setTimeout(() => {
-            clearInterval(interval);
-            resetGlitch();
-            idx++;
-            initialCycle();
-          }, 50); // Ultra-fast 0.05s per phrase
-        } else {
-          // Stay on last phrase briefly, then start regular cycle
-          setTimeout(() => {
-            resetGlitch();
-            startRegularMobileCycle();
-          }, 1000);
-        }
-      }
-      
-      // Original mobile sequence with longer pauses
-      function startRegularMobileCycle() {
-        const sequence = [
-          0, 1, 2, 3, 4, 5, [5, 2000],
-          6, 7, 8, 9, 10, 11, [11, 2000],
-          8, 9, 10, 11, 0, 1, 2, [2, 2000],
-          3, 4, 5, 6, 7, 8, 9, 10, 11, [4, 2000]
-        ];
-        
-        let seqIdx = 0;
-        async function loop() {
-          while (true) {
-            let entry = sequence[seqIdx % sequence.length];
-            let phraseIndex = Array.isArray(entry) ? entry[0] : entry;
-            let delay = Array.isArray(entry) ? entry[1] : 100;
-            
-            applyGlitch(phrases[phraseIndex], delay < 1000);
-            
-            if (delay < 1000) {
-              let angle = 0;
-              const interval = setInterval(() => {
-                const x = Math.cos(angle) * 3;
-                const y = Math.sin(angle) * 1.5;
-                r.style.transform = `translate(${-x}px, ${-y}px) translateY(-50%)`;
-                g.style.transform = `translate(${x}px, ${-y}px) translateY(-50%)`;
-                b.style.transform = `translate(${x}px, ${y}px) translateY(-50%)`;
-                angle += 0.25;
-              }, 16);
-              await new Promise(res => setTimeout(res, delay));
-              clearInterval(interval);
-            } else {
-              resetGlitch();
-              await new Promise(res => setTimeout(res, delay));
-            }
-            
-            seqIdx++;
-          }
-        }
-        loop();
-      }
-      
-      // Start the initial fast sequence
-      initialCycle();
-    }
-
-    // Desktop intro animation sequence
-    function desktopIntroSequence() {
-      // Use just 4 phrases for super fast Black Mirror style sequence
-      const introSequence = [0, 1, 3, 5]; // Selected key phrases for dramatic effect
-      let idx = 0;
-      
-      function cycleIntro() {
-        if (idx >= introSequence.length) {
-          // Switch to mouse-reactive mode after going through all 4
-          return;
-        }
-        
-        applyGlitch(phrases[introSequence[idx]], true);
-        
-        // Only apply glitch effect if not on the last phrase
-        if (idx < introSequence.length - 1) {
-          let angle = 0;
-          const interval = setInterval(() => {
-            const x = Math.cos(angle) * 4; // More aggressive glitch
-            const y = Math.sin(angle) * 2; // More aggressive glitch
-            r.style.transform = `translate(${-x}px, ${-y}px) translateY(-50%)`;
-            g.style.transform = `translate(${x}px, ${-y}px) translateY(-50%)`;
-            b.style.transform = `translate(${x}px, ${y}px) translateY(-50%)`;
-            angle += 0.5; // Faster oscillation
-          }, 16);
-          
-          setTimeout(() => {
-            clearInterval(interval);
-            resetGlitch();
-            idx++;
-            cycleIntro();
-          }, 50); // Ultra-fast 0.05s per phrase
-        } else {
-          // Stay on the last phrase
-          resetGlitch();
-        }
-      }
-      
-      cycleIntro();
-    }
-
-    // Check for mouse inactivity
-    function checkMouseInactivity() {
-      if (!mouseStopped && Date.now() - lastMove > 100) {
-        resetGlitch();
-      }
-      requestAnimationFrame(checkMouseInactivity);
-    }
-
-    // Hide underline when animation completes
-    function hideUnderline() {
-      underlineContainer.style.display = 'none';
-    }
-
-    // Main intro animation sequence - COMPLETELY REVISED
-    function startIntroAnimation() {
-      // Initialize with first phrase
-      applyGlitch(phrases[0]);
-      
-      // Force layout recalculation before animation
-      underlineContainer.getBoundingClientRect();
-      
-      console.log("Starting animation sequence");
-      
-      // Step 1: Ensure underline is initially visible but transformed off-screen
-      underline.style.transform = 'translateX(-101%)';
-      underlineContainer.style.display = 'block';
-      underlineContainer.style.opacity = '1';
-      underlineMask.style.width = '0%';
-      
-      // Force browser to acknowledge these settings before animating
-      window.getComputedStyle(underline).transform;
-      window.getComputedStyle(underlineContainer).display;
-      
-      // Step 2: Animate underline in from left to right
-      setTimeout(() => {
-        console.log("Drawing underline");
-        underline.style.transition = `transform ${TIMING.UNDERLINE_DRAW}ms cubic-bezier(0.25, 0.1, 0.25, 1)`;
-        underline.style.transform = 'translateX(0)';
-        
-        // Step 3: Pause before underline disappears
-        setTimeout(() => {
-          console.log("Preparing to hide underline");
-          // Step 4: Make underline disappear from left to right (using the mask)
-          underlineMask.style.transition = `width ${TIMING.UNDERLINE_HIDE}ms cubic-bezier(0.25, 0.1, 0.25, 1)`;
-          underlineMask.style.width = '100%';
-          
-          // Completely hide the underline container after mask animation
-          setTimeout(() => {
-            console.log("Hiding underline completely");
-            // Explicitly set display to none
-            underlineContainer.style.display = 'none';
-            
-            // Step 5: Only AFTER underline is fully gone, fade black background
-            setTimeout(() => {
-              console.log("Fading background");
-              // Now fade the background
-              background.style.opacity = '0';
-              
-              // Step 6: Begin glitch animation and wave effect once background is revealed
-              setTimeout(() => {
-                console.log("Starting glitch animation");
-                introAnimationComplete = true;
-                                
-                if (mobile) {
-                  mobileSequence();
-                } else {
-                  desktopIntroSequence();
-                }
-              }, TIMING.BACKGROUND_FADE);
-            }, 100); // Short delay between underline disappearing and background fading
-          }, TIMING.UNDERLINE_HIDE);
-        }, TIMING.UNDERLINE_PAUSE);
-      }, TIMING.START_DELAY);
-    }
-
-    // Custom cursor tracking
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseenter', () => {
-      cursor.style.opacity = '1';
-    });
-    document.addEventListener('mouseleave', () => {
-      cursor.style.opacity = '0';
-    });
-
-    // Log status at each critical animation phase
-    window.addEventListener('DOMContentLoaded', () => {
-      console.log("DOM fully loaded and parsed");
-      console.log("Underline element: ", underline);
-      console.log("Underline container: ", document.getElementById('underline-container'));
-    });
-    
-    // Initialize video with better error handling
-    video.addEventListener('loadeddata', () => {
-      console.log("Video data loaded successfully");
-      // Ensure video is ready before starting animation
-      startIntroAnimation();
-    });
-    
-    video.addEventListener('error', (e) => {
-      console.error("Video error: ", e);
-      // Start animation anyway if video fails
-      startIntroAnimation();
-    });
-    
-    // Start animation anyway if video takes too long
-    setTimeout(() => {
-      if (!introAnimationComplete) {
-        console.log("Timeout - starting animation anyway");
-        startIntroAnimation();
-      }
-    }, 1000);
-
-    // Start inactivity checker
-    if (!mobile) {
-      checkMouseInactivity();
-    }
-  </script>
+<p class="p1"><span class="s1">&lt;</span><span class="s2">html</span><span class="s3"> </span><span class="s4">lang</span><span class="s5">="</span><span class="s6">en</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p1"><span class="s1">&lt;</span><span class="s2">head</span><span class="s1">&gt;</span></p>
+<p class="p2"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;</span><span class="s8">meta</span><span class="s3"> </span><span class="s2">charset</span><span class="s5">="</span><span class="s6">UTF-8</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;</span><span class="s8">meta</span><span class="s3"> </span><span class="s4">name</span><span class="s5">="</span><span class="s2">viewport</span><span class="s5">"</span><span class="s3"> </span><span class="s4">content</span><span class="s5">="</span><span class="s2">width=device-width, initial-scale=1.0</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;</span><span class="s8">title</span><span class="s1">&gt;</span><span class="s2">ENSO STUDIOS</span><span class="s1">&lt;/</span><span class="s8">title</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;</span><span class="s8">link</span><span class="s3"> </span><span class="s4">rel</span><span class="s5">="</span><span class="s2">stylesheet</span><span class="s5">"</span><span class="s3"> </span><span class="s4">href</span><span class="s5">="</span><span class="s2">style.css</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/</span><span class="s2">head</span><span class="s1">&gt;</span></p>
+<p class="p1"><span class="s1">&lt;</span><span class="s2">body</span><span class="s1">&gt;</span></p>
+<p class="p5"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s2"><i>&lt;!-- SVG Filters for wave distortion --&gt;</i><i></i></span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;</span><span class="s8">svg</span><span class="s7"> </span><span class="s4">width</span><span class="s5">="</span><span class="s2">0</span><span class="s5">"</span><span class="s7"> </span><span class="s4">height</span><span class="s5">="</span><span class="s2">0</span><span class="s5">"</span><span class="s7"> </span><span class="s4">style</span><span class="s5">="</span><span class="s2">position: absolute;</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;</span><span class="s8">filter</span><span class="s7"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">wave-filter</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p2"><span class="s7"><span class="Apple-converted-space">      </span></span><span class="s1">&lt;</span><span class="s8">feTurbulence</span><span class="s7"> </span><span class="s2">type</span><span class="s5">="</span><span class="s6">turbulence</span><span class="s5">"</span><span class="s7"> </span><span class="s2">baseFrequency</span><span class="s5">="</span><span class="s6">0.02 0.02</span><span class="s5">"</span><span class="s7"> </span><span class="s2">numOctaves</span><span class="s5">="</span><span class="s6">3</span><span class="s5">"</span><span class="s7"> </span><span class="s2">seed</span><span class="s5">="</span><span class="s6">1</span><span class="s5">"</span><span class="s7"> </span><span class="s2">id</span><span class="s5">="</span><span class="s6">turbulence</span><span class="s5">"</span><span class="s7"> </span><span class="s1">/&gt;</span></p>
+<p class="p2"><span class="s7"><span class="Apple-converted-space">      </span></span><span class="s1">&lt;</span><span class="s8">feDisplacementMap</span><span class="s7"> </span><span class="s2">in</span><span class="s5">="</span><span class="s6">SourceGraphic</span><span class="s5">"</span><span class="s7"> </span><span class="s2">in2</span><span class="s5">="</span><span class="s6">turbulence</span><span class="s5">"</span><span class="s7"> </span><span class="s2">scale</span><span class="s5">="</span><span class="s6">35</span><span class="s5">"</span><span class="s7"> </span><span class="s2">xChannelSelector</span><span class="s5">="</span><span class="s6">R</span><span class="s5">"</span><span class="s7"> </span><span class="s2">yChannelSelector</span><span class="s5">="</span><span class="s6">G</span><span class="s5">"</span><span class="s7"> </span><span class="s1">/&gt;</span></p>
+<p class="p1"><span class="s7"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;/</span><span class="s2">filter</span><span class="s1">&gt;</span></p>
+<p class="p1"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;/</span><span class="s2">svg</span><span class="s1">&gt;</span></p>
+<p class="p6"><span class="s9"></span><br></p>
+<p class="p5"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s2"><i>&lt;!-- Background overlay --&gt;</i><i></i></span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">background</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p6"><span class="s9"></span><br></p>
+<p class="p5"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s2"><i>&lt;!-- Split screen background --&gt;</i><i></i></span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">split-screen</span><span class="s5">"</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">split-screen</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">panel left-panel</span><span class="s5">"</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">left-panel</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">      </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">corner-title-panel</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">corner-title top-left</span><span class="s5">"</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">corner-photo</span><span class="s5">"</span><span class="s1">&gt;</span><span class="s7">Photo</span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">project-list left-projects</span><span class="s5">"</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">left-projects</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p2"><span class="s7"><span class="Apple-converted-space">          </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s2">class</span><span class="s5">="</span><span class="s6">project-title</span><span class="s5">"</span><span class="s3"> </span><span class="s2">data-index</span><span class="s5">="</span><span class="s6">0</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;</span><span class="s8">span</span><span class="s1">&gt;</span><span class="s2">Portrait Series</span><span class="s1">&lt;/</span><span class="s8">span</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">project-preview</span><span class="s5">"</span><span class="s1">&gt;&lt;</span><span class="s8">img</span><span class="s3"> </span><span class="s4">src</span><span class="s5">="</span><span class="s2">https://placehold.co/320x180?text=Photo+1</span><span class="s5">"</span><span class="s3"> </span><span class="s4">alt</span><span class="s5">="</span><span class="s2">Preview 1</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p2"><span class="s7"><span class="Apple-converted-space">          </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s2">class</span><span class="s5">="</span><span class="s6">project-title</span><span class="s5">"</span><span class="s3"> </span><span class="s2">data-index</span><span class="s5">="</span><span class="s6">1</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;</span><span class="s8">span</span><span class="s1">&gt;</span><span class="s2">Urban Landscapes</span><span class="s1">&lt;/</span><span class="s8">span</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">project-preview</span><span class="s5">"</span><span class="s1">&gt;&lt;</span><span class="s8">img</span><span class="s3"> </span><span class="s4">src</span><span class="s5">="</span><span class="s2">https://placehold.co/320x180?text=Photo+2</span><span class="s5">"</span><span class="s3"> </span><span class="s4">alt</span><span class="s5">="</span><span class="s2">Preview 2</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p2"><span class="s7"><span class="Apple-converted-space">          </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s2">class</span><span class="s5">="</span><span class="s6">project-title</span><span class="s5">"</span><span class="s3"> </span><span class="s2">data-index</span><span class="s5">="</span><span class="s6">2</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;</span><span class="s8">span</span><span class="s1">&gt;</span><span class="s2">Studio Still Life</span><span class="s1">&lt;/</span><span class="s8">span</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">project-preview</span><span class="s5">"</span><span class="s1">&gt;&lt;</span><span class="s8">img</span><span class="s3"> </span><span class="s4">src</span><span class="s5">="</span><span class="s2">https://placehold.co/320x180?text=Photo+3</span><span class="s5">"</span><span class="s3"> </span><span class="s4">alt</span><span class="s5">="</span><span class="s2">Preview 3</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">      </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">      </span></span><span class="s1">&lt;</span><span class="s8">img</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">panel-bg</span><span class="s5">"</span><span class="s3"> </span><span class="s4">src</span><span class="s5">="</span><span class="s2">https://raw.githubusercontent.com/CreateWithEnso/enso-assets/main/2DF901D2-716B-401C-A64A-A128E67A1512_1_105_c.jpeg</span><span class="s5">"</span><span class="s3"> </span><span class="s4">alt</span><span class="s5">="</span><span class="s2">Enso Studios</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">panel right-panel</span><span class="s5">"</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">right-panel</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">      </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">corner-title-panel</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">corner-title top-right</span><span class="s5">"</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">corner-film</span><span class="s5">"</span><span class="s1">&gt;</span><span class="s7">Film</span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">project-list right-projects</span><span class="s5">"</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">right-projects</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p2"><span class="s7"><span class="Apple-converted-space">          </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s2">class</span><span class="s5">="</span><span class="s6">project-title</span><span class="s5">"</span><span class="s3"> </span><span class="s2">data-index</span><span class="s5">="</span><span class="s6">0</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;</span><span class="s8">span</span><span class="s1">&gt;</span><span class="s2">G6 Film Studios</span><span class="s1">&lt;/</span><span class="s8">span</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">project-preview</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">              </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">style</span><span class="s5">="</span><span class="s2">padding:177.78% 0 0 0;position:relative;</span><span class="s5">"</span><span class="s1">&gt;&lt;</span><span class="s8">iframe</span><span class="s3"> </span><span class="s4">src</span><span class="s5">="</span><span class="s2">https://player.vimeo.com/video/1077804813?h=7437a21e45</span><span class="s5">&amp;</span><span class="s10">amp</span><span class="s5">;</span><span class="s2">badge=0</span><span class="s5">&amp;</span><span class="s10">amp</span><span class="s5">;</span><span class="s2">autopause=0</span><span class="s5">&amp;</span><span class="s10">amp</span><span class="s5">;</span><span class="s2">player_id=0</span><span class="s5">&amp;</span><span class="s10">amp</span><span class="s5">;</span><span class="s2">app_id=58479</span><span class="s5">"</span><span class="s3"> </span><span class="s4">frameborder</span><span class="s5">="</span><span class="s2">0</span><span class="s5">"</span><span class="s3"> </span><span class="s4">allow</span><span class="s5">="</span><span class="s2">autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media</span><span class="s5">"</span><span class="s3"> </span><span class="s4">style</span><span class="s5">="</span><span class="s2">position:absolute;top:0;left:0;width:100%;height:100%;</span><span class="s5">"</span><span class="s3"> </span><span class="s4">title</span><span class="s5">="</span><span class="s2">G6 Film Studios</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">iframe</span><span class="s1">&gt;&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p2"><span class="s7"><span class="Apple-converted-space">          </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s2">class</span><span class="s5">="</span><span class="s6">project-title</span><span class="s5">"</span><span class="s3"> </span><span class="s2">data-index</span><span class="s5">="</span><span class="s6">1</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;</span><span class="s8">span</span><span class="s1">&gt;</span><span class="s2">Superba Living</span><span class="s1">&lt;/</span><span class="s8">span</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">project-preview</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">              </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">style</span><span class="s5">="</span><span class="s2">padding:177.78% 0 0 0;position:relative;</span><span class="s5">"</span><span class="s1">&gt;&lt;</span><span class="s8">iframe</span><span class="s3"> </span><span class="s4">src</span><span class="s5">="</span><span class="s2">https://player.vimeo.com/video/1077810709?h=c0de2f83cd</span><span class="s5">&amp;</span><span class="s10">amp</span><span class="s5">;</span><span class="s2">badge=0</span><span class="s5">&amp;</span><span class="s10">amp</span><span class="s5">;</span><span class="s2">autopause=0</span><span class="s5">&amp;</span><span class="s10">amp</span><span class="s5">;</span><span class="s2">player_id=0</span><span class="s5">&amp;</span><span class="s10">amp</span><span class="s5">;</span><span class="s2">app_id=58479</span><span class="s5">"</span><span class="s3"> </span><span class="s4">frameborder</span><span class="s5">="</span><span class="s2">0</span><span class="s5">"</span><span class="s3"> </span><span class="s4">allow</span><span class="s5">="</span><span class="s2">autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media</span><span class="s5">"</span><span class="s3"> </span><span class="s4">style</span><span class="s5">="</span><span class="s2">position:absolute;top:0;left:0;width:100%;height:100%;</span><span class="s5">"</span><span class="s3"> </span><span class="s4">title</span><span class="s5">="</span><span class="s2">Superba instagram reel</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">iframe</span><span class="s1">&gt;&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p2"><span class="s7"><span class="Apple-converted-space">          </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s2">class</span><span class="s5">="</span><span class="s6">project-title</span><span class="s5">"</span><span class="s3"> </span><span class="s2">data-index</span><span class="s5">="</span><span class="s6">2</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;</span><span class="s8">span</span><span class="s1">&gt;</span><span class="s2">Mini Me's by Meekz Behind the Scenes</span><span class="s1">&lt;/</span><span class="s8">span</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">project-preview</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">              </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">style</span><span class="s5">="</span><span class="s2">padding:56.25% 0 0 0;position:relative;</span><span class="s5">"</span><span class="s1">&gt;&lt;</span><span class="s8">iframe</span><span class="s3"> </span><span class="s4">src</span><span class="s5">="</span><span class="s2">https://player.vimeo.com/video/1077804882?h=e06c9f3145</span><span class="s5">&amp;</span><span class="s10">amp</span><span class="s5">;</span><span class="s2">badge=0</span><span class="s5">&amp;</span><span class="s10">amp</span><span class="s5">;</span><span class="s2">autopause=0</span><span class="s5">&amp;</span><span class="s10">amp</span><span class="s5">;</span><span class="s2">player_id=0</span><span class="s5">&amp;</span><span class="s10">amp</span><span class="s5">;</span><span class="s2">app_id=58479</span><span class="s5">"</span><span class="s3"> </span><span class="s4">frameborder</span><span class="s5">="</span><span class="s2">0</span><span class="s5">"</span><span class="s3"> </span><span class="s4">allow</span><span class="s5">="</span><span class="s2">autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media</span><span class="s5">"</span><span class="s3"> </span><span class="s4">style</span><span class="s5">="</span><span class="s2">position:absolute;top:0;left:0;width:100%;height:100%;</span><span class="s5">"</span><span class="s3"> </span><span class="s4">title</span><span class="s5">="</span><span class="s2">mini mes bts v1</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">iframe</span><span class="s1">&gt;&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">      </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p2"><span class="s7"><span class="Apple-converted-space">      </span></span><span class="s1">&lt;</span><span class="s8">video</span><span class="s3"> </span><span class="s2">class</span><span class="s5">="</span><span class="s6">panel-bg</span><span class="s5">"</span><span class="s3"> </span><span class="s2">id</span><span class="s5">="</span><span class="s6">background-video</span><span class="s5">"</span><span class="s3"> </span><span class="s2">autoplay</span><span class="s3"> </span><span class="s2">loop</span><span class="s3"> </span><span class="s2">muted</span><span class="s3"> </span><span class="s2">playsinline</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;</span><span class="s8">source</span><span class="s3"> </span><span class="s4">src</span><span class="s5">="</span><span class="s2">https://raw.githubusercontent.com/CreateWithEnso/enso-assets/main/temp%20showreel%201.mp4</span><span class="s5">"</span><span class="s3"> </span><span class="s4">type</span><span class="s5">="</span><span class="s2">video/mp4</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">      </span></span><span class="s1">&lt;/</span><span class="s8">video</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">      </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">wave-mask</span><span class="s5">"</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">wave-mask</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p1"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;/</span><span class="s2">div</span><span class="s1">&gt;</span></p>
+<p class="p6"><span class="s9"></span><br></p>
+<p class="p5"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s2"><i>&lt;!-- Title container --&gt;</i><i></i></span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">title-container</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">glitch-container</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">      </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">text-wrapper</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">glitch-white</span><span class="s5">"</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">glitch-layer</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">glitch-r</span><span class="s5">"</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">glitch-layer</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">glitch-g</span><span class="s5">"</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">glitch-layer</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">glitch-b</span><span class="s5">"</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">glitch-layer</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">      </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">underline-container</span><span class="s5">"</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">underline-container</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">      </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">underline-inner</span><span class="s5">"</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">underline</span><span class="s5">"</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">underline</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">      </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">      </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">underline-mask</span><span class="s5">"</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">underline-mask</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p4"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p1"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;/</span><span class="s2">div</span><span class="s1">&gt;</span></p>
+<p class="p5"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s2"><i>&lt;!-- Hidden span for measuring glitch text width --&gt;</i><i></i></span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;</span><span class="s8">span</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">glitch-measure</span><span class="s5">"</span><span class="s3"> </span><span class="s4">style</span><span class="s5">="</span><span class="s2">visibility:hidden;position:absolute;white-space:nowrap;left:-9999px;</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">span</span><span class="s1">&gt;</span></p>
+<p class="p7"><span class="s2"><span class="Apple-converted-space">  </span></span></p>
+<p class="p5"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s2"><i>&lt;!-- Bottom Corner Titles --&gt;</i><i></i></span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">corner-title bottom-left</span><span class="s5">"</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">corner-info</span><span class="s5">"</span><span class="s1">&gt;</span><span class="s7">Info</span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">corner-title bottom-right</span><span class="s5">"</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">corner-email</span><span class="s5">"</span><span class="s1">&gt;</span><span class="s7">hello@createwithenso.com</span><span class="s1">&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p6"><span class="s9"></span><br></p>
+<p class="p5"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s2"><i>&lt;!-- Custom cursor --&gt;</i><i></i></span></p>
+<p class="p3"><span class="s7"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;</span><span class="s8">div</span><span class="s3"> </span><span class="s4">class</span><span class="s5">="</span><span class="s2">custom-cursor</span><span class="s5">"</span><span class="s3"> </span><span class="s4">id</span><span class="s5">="</span><span class="s2">cursor</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s8">div</span><span class="s1">&gt;</span></p>
+<p class="p6"><span class="s9"></span><br></p>
+<p class="p1"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;</span><span class="s2">script</span><span class="s3"> </span><span class="s4">src</span><span class="s5">="</span><span class="s6">main.js</span><span class="s5">"</span><span class="s1">&gt;&lt;/</span><span class="s2">script</span><span class="s1">&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/</span><span class="s2">body</span><span class="s1">&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/</span><span class="s2">html</span><span class="s1">&gt;</span></p>
 </body>
 </html>
