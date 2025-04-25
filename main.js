@@ -1,597 +1,555 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #40466a; -webkit-text-stroke: #40466a}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #ac82f5; -webkit-text-stroke: #ac82f5}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #64d4be; -webkit-text-stroke: #64d4be}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #89adf2; -webkit-text-stroke: #89adf2}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #99a0cc; -webkit-text-stroke: #99a0cc; min-height: 14.0px}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #8ec757; -webkit-text-stroke: #8ec757}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #688df5; -webkit-text-stroke: #688df5}
-    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #a7f9f6; -webkit-text-stroke: #a7f9f6}
-    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #6dc3ff; -webkit-text-stroke: #6dc3ff}
-    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #b3bdf2; -webkit-text-stroke: #b3bdf2}
-    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #d7a056; -webkit-text-stroke: #d7a056}
-    p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #fd8b52; -webkit-text-stroke: #fd8b52}
-    span.s1 {font-kerning: none; background-color: #14141c}
-    span.s2 {font-kerning: none; color: #8a63cf; background-color: #14141c; -webkit-text-stroke: 0px #8a63cf}
-    span.s3 {font-kerning: none; color: #99a0cc; background-color: #14141c; -webkit-text-stroke: 0px #99a0cc}
-    span.s4 {font-kerning: none; color: #79d5ff; background-color: #14141c; -webkit-text-stroke: 0px #79d5ff}
-    span.s5 {font-kerning: none; color: #89adf2; background-color: #14141c; -webkit-text-stroke: 0px #89adf2}
-    span.s6 {font-kerning: none; color: #fd8b52; background-color: #14141c; -webkit-text-stroke: 0px #fd8b52}
-    span.s7 {font-kerning: none}
-    span.s8 {font-kerning: none; color: #64d4be; background-color: #14141c; -webkit-text-stroke: 0px #64d4be}
-    span.s9 {font-kerning: none; color: #ac82f5; background-color: #14141c; -webkit-text-stroke: 0px #ac82f5}
-    span.s10 {font-kerning: none; color: #b3bdf2; background-color: #14141c; -webkit-text-stroke: 0px #b3bdf2}
-    span.s11 {font-kerning: none; color: #8ec757; background-color: #14141c; -webkit-text-stroke: 0px #8ec757}
-    span.s12 {font-kerning: none; color: #688df5; background-color: #14141c; -webkit-text-stroke: 0px #688df5}
-    span.s13 {font-kerning: none; color: #6dc3ff; background-color: #14141c; -webkit-text-stroke: 0px #6dc3ff}
-    span.s14 {font-kerning: none; color: #d7a056; background-color: #14141c; -webkit-text-stroke: 0px #d7a056}
-    span.s15 {font-kerning: none; color: #40466a; background-color: #14141c; -webkit-text-stroke: 0px #40466a}
-    span.s16 {font-kerning: none; color: #19abce; background-color: #14141c; -webkit-text-stroke: 0px #19abce}
-  </style>
-</head>
-<body>
-<p class="p1"><span class="s1"><i>// Animation sequence timing</i><i></i></span></p>
-<p class="p2"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s1">TIMING</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p3"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s1">START_DELAY</span><span class="s4">:</span><span class="s3"> </span><span class="s6">300</span><span class="s4">,</span></p>
-<p class="p3"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s1">UNDERLINE_DRAW</span><span class="s4">:</span><span class="s3"> </span><span class="s6">300</span><span class="s4">,</span></p>
-<p class="p3"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s1">UNDERLINE_PAUSE</span><span class="s4">:</span><span class="s3"> </span><span class="s6">400</span><span class="s4">,</span></p>
-<p class="p3"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s1">UNDERLINE_HIDE</span><span class="s4">:</span><span class="s3"> </span><span class="s6">300</span><span class="s4">,</span></p>
-<p class="p3"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s1">BACKGROUND_FADE</span><span class="s4">:</span><span class="s3"> </span><span class="s6">600</span></p>
-<p class="p4"><span class="s1">}</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// Phrases for glitch animation</i><i></i></span></p>
-<p class="p2"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s1">phrases</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s5">[</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s5">{</span><span class="s3"> </span><span class="s8">text</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">ENSO STUDIOS DANIEL VAMOSI</span><span class="s4">",</span><span class="s3"> </span><span class="s8">font</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">Bodoni Moda</span><span class="s4">",</span><span class="s3"> </span><span class="s8">style</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">italic</span><span class="s4">"</span><span class="s3"> </span><span class="s5">}</span><span class="s4">,</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s5">{</span><span class="s3"> </span><span class="s8">text</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">ENSO STUDIOS DANIEL VAMOSI</span><span class="s4">",</span><span class="s3"> </span><span class="s8">font</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">Nunito</span><span class="s4">"</span><span class="s3"> </span><span class="s5">}</span><span class="s4">,</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s5">{</span><span class="s3"> </span><span class="s8">text</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">enso studios daniel vamosi</span><span class="s4">",</span><span class="s3"> </span><span class="s8">font</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">Calistoga</span><span class="s4">",</span><span class="s3"> </span><span class="s8">style</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">italic</span><span class="s4">"</span><span class="s3"> </span><span class="s5">}</span><span class="s4">,</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s5">{</span><span class="s3"> </span><span class="s8">text</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">ENSO STUDIOS DANIEL VAMOSI</span><span class="s4">",</span><span class="s3"> </span><span class="s8">font</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">Barlow ExtraBold</span><span class="s4">"</span><span class="s3"> </span><span class="s5">}</span><span class="s4">,</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s5">{</span><span class="s3"> </span><span class="s8">text</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">ENSO STUDIOS DANIEL VAMOSI</span><span class="s4">",</span><span class="s3"> </span><span class="s8">font</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">Pixels</span><span class="s4">",</span><span class="s3"> </span><span class="s8">size</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">6.5vw</span><span class="s4">",</span><span class="s3"> </span><span class="s8">raise</span><span class="s4">:</span><span class="s3"> </span><span class="s6">true</span><span class="s3"> </span><span class="s5">}</span><span class="s4">,</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s5">{</span><span class="s3"> </span><span class="s8">text</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">enso studios daniel vamosi</span><span class="s4">",</span><span class="s3"> </span><span class="s8">font</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">IBM Plex Serif Thin</span><span class="s4">",</span><span class="s3"> </span><span class="s8">style</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">italic</span><span class="s4">"</span><span class="s3"> </span><span class="s5">}</span><span class="s4">,</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s5">{</span><span class="s3"> </span><span class="s8">text</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">ENSO STUDIOS DANIEL VAMOSI</span><span class="s4">",</span><span class="s3"> </span><span class="s8">font</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">Sofia Pro</span><span class="s4">"</span><span class="s3"> </span><span class="s5">}</span><span class="s4">,</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s5">{</span><span class="s3"> </span><span class="s8">text</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">[ en-so ] [ dan-yell ] [ vam-oh-see ]</span><span class="s4">",</span><span class="s3"> </span><span class="s8">font</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">DM Mono</span><span class="s4">",</span><span class="s3"> </span><span class="s8">size</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">2.975vw</span><span class="s4">"</span><span class="s3"> </span><span class="s5">}</span><span class="s4">,</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s5">{</span><span class="s3"> </span><span class="s8">text</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">endv</span><span class="s4">",</span><span class="s3"> </span><span class="s8">font</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">Montserrat ExtraBold</span><span class="s4">",</span><span class="s3"> </span><span class="s8">style</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">italic</span><span class="s4">"</span><span class="s3"> </span><span class="s5">}</span><span class="s4">,</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s5">{</span><span class="s3"> </span><span class="s8">text</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">e</span><span class="s4">",</span><span class="s3"> </span><span class="s8">font</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">Rig Shaded</span><span class="s4">",</span><span class="s3"> </span><span class="s8">size</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">4vw</span><span class="s4">"</span><span class="s3"> </span><span class="s5">}</span><span class="s4">,</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s5">{</span><span class="s3"> </span><span class="s8">text</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">E</span><span class="s4">",</span><span class="s3"> </span><span class="s8">font</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">Bodoni Moda</span><span class="s4">",</span><span class="s3"> </span><span class="s8">style</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">italic</span><span class="s4">",</span><span class="s3"> </span><span class="s8">size</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">4vw</span><span class="s4">"</span><span class="s3"> </span><span class="s5">}</span><span class="s4">,</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s5">{</span><span class="s3"> </span><span class="s8">text</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">E</span><span class="s4">",</span><span class="s3"> </span><span class="s8">font</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">Barlow ExtraBold</span><span class="s4">",</span><span class="s3"> </span><span class="s8">size</span><span class="s4">:</span><span class="s3"> </span><span class="s4">"</span><span class="s1">4vw</span><span class="s4">"</span><span class="s3"> </span><span class="s5">}</span></p>
-<p class="p4"><span class="s1">]</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// DOM elements</i><i></i></span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">underline</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">"</span><span class="s11">underline</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">underlineMask</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">"</span><span class="s11">underline-mask</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">background</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">"</span><span class="s11">background</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">cursor</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">"</span><span class="s11">cursor</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">white</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">"</span><span class="s11">glitch-white</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">r</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">"</span><span class="s11">glitch-r</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">g</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">"</span><span class="s11">glitch-g</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">b</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">"</span><span class="s11">glitch-b</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">waveMask</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">"</span><span class="s11">wave-mask</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">turbulence</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">"</span><span class="s11">turbulence</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p6"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">video</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s12">getElementById</span><span class="s5">(</span><span class="s4">"</span><span class="s1">background-video</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// Container elements</i><i></i></span></p>
-<p class="p6"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">underlineContainer</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s12">querySelector</span><span class="s5">(</span><span class="s4">"</span><span class="s1">.underline-container</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p6"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">underlineInner</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s12">querySelector</span><span class="s5">(</span><span class="s4">"</span><span class="s1">.underline-inner</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">textWrapper</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">querySelector</span><span class="s5">(</span><span class="s4">"</span><span class="s11">.text-wrapper</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// Panel elements</i><i></i></span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">splitScreen</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">'</span><span class="s11">split-screen</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">leftPanel</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">'</span><span class="s11">left-panel</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">rightPanel</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">'</span><span class="s11">right-panel</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">leftProjects</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">'</span><span class="s11">left-projects</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">rightProjects</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">'</span><span class="s11">right-projects</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p6"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">glitchContainer</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s12">querySelector</span><span class="s5">(</span><span class="s4">'</span><span class="s1">.glitch-container</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// Animation state</i><i></i></span></p>
-<p class="p2"><span class="s2"><i>let</i></span><span class="s3"> </span><span class="s1">current</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s6">0</span><span class="s4">;</span></p>
-<p class="p2"><span class="s2"><i>let</i></span><span class="s3"> </span><span class="s1">lastMove</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">Date</span><span class="s4">.</span><span class="s12">now</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p2"><span class="s2"><i>let</i></span><span class="s3"> </span><span class="s1">lastPhaseChange</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s6">0</span><span class="s4">;</span></p>
-<p class="p2"><span class="s2"><i>let</i></span><span class="s3"> </span><span class="s1">lastMouseX</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s6">0</span><span class="s4">;</span></p>
-<p class="p2"><span class="s2"><i>let</i></span><span class="s3"> </span><span class="s1">lastMouseY</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s6">0</span><span class="s4">;</span></p>
-<p class="p8"><span class="s2"><i>let</i></span><span class="s3"> </span><span class="s9">mobile</span><span class="s3"> </span><span class="s4">=</span><span class="s1"> </span><span class="s4">/</span><span class="s1">Mobi</span><span class="s9">|</span><span class="s1">Android</span><span class="s4">/i.</span><span class="s12">test</span><span class="s5">(</span><span class="s10">navigator</span><span class="s4">.</span><span class="s13">userAgent</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p2"><span class="s2"><i>let</i></span><span class="s3"> </span><span class="s1">mouseStopped</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s6">true</span><span class="s4">;</span></p>
-<p class="p2"><span class="s2"><i>let</i></span><span class="s3"> </span><span class="s1">introAnimationComplete</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s6">false</span><span class="s4">;</span></p>
-<p class="p2"><span class="s2"><i>let</i></span><span class="s3"> </span><span class="s1">mouseX</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s6">0</span><span class="s4">;</span></p>
-<p class="p2"><span class="s2"><i>let</i></span><span class="s3"> </span><span class="s1">mouseY</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s6">0</span><span class="s4">;</span></p>
-<p class="p2"><span class="s2"><i>let</i></span><span class="s3"> </span><span class="s1">waveTime</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s6">0</span><span class="s4">;</span></p>
-<p class="p2"><span class="s2"><i>let</i></span><span class="s3"> </span><span class="s1">waveInterval</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s2"><i>let</i></span><span class="s3"> </span><span class="s9">currentZone</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s4">'</span><span class="s11">center</span><span class="s4">';</span><span class="s3"> </span><span class="s1"><i>// 'center' | 'left' | 'right'</i><i></i></span></p>
-<p class="p2"><span class="s2"><i>let</i></span><span class="s3"> </span><span class="s1">fullscreenPanel</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s6">null</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// Utility: measure glitch text width and update underline</i><i></i></span></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">updateUnderlineToText</span><span class="s5">(</span><span class="s14">phrase</span><span class="s5">)</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">measure</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">"</span><span class="s11">glitch-measure</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">if</span><span class="s5"> (</span><span class="s1">!</span><span class="s10">measure</span><span class="s5">) </span><span class="s1"><i>return</i></span><span class="s4">;</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">measure</span><span class="s4">.</span><span class="s1">textContent</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">phrase</span><span class="s4">.</span><span class="s1">text</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">measure</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">fontFamily</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s11">'</span><span class="s13">${</span><span class="s1">phrase</span><span class="s4">.</span><span class="s13">font}</span><span class="s11">'</span><span class="s4">`;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">measure</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">fontStyle</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">phrase</span><span class="s4">.</span><span class="s13">style</span><span class="s5"> </span><span class="s9">||</span><span class="s5"> </span><span class="s4">"</span><span class="s11">normal</span><span class="s4">";</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">measure</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">fontSize</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">phrase</span><span class="s4">.</span><span class="s13">size</span><span class="s5"> </span><span class="s9">||</span><span class="s5"> </span><span class="s4">"</span><span class="s11">3.5vw</span><span class="s4">";</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>let</i></span><span class="s5"> </span><span class="s9">textWidth</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">measure</span><span class="s4">.</span><span class="s1">getBoundingClientRect</span><span class="s5">()</span><span class="s4">.</span><span class="s13">width</span><span class="s4">;</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s1"><i>// Add 0.3cm (0.15 left + 0.15 right) for buffer</i><i></i></span></p>
-<p class="p1"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">buffer</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s6">0.3</span><span class="s5"> </span><span class="s4">*</span><span class="s5"> </span><span class="s6">37.7952755906</span><span class="s4">;</span><span class="s5"> </span><span class="s1"><i>// 1cm = 37.795 px</i><i></i></span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">textWidth</span><span class="s5"> </span><span class="s4">+=</span><span class="s5"> </span><span class="s1">buffer</span><span class="s4">;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">underlineContainer</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">document</span><span class="s4">.</span><span class="s12">querySelector</span><span class="s5">(</span><span class="s4">"</span><span class="s1">.underline-container</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">underlineInner</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">document</span><span class="s4">.</span><span class="s12">querySelector</span><span class="s5">(</span><span class="s4">"</span><span class="s1">.underline-inner</span><span class="s4">"</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">underlineContainer</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">width</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">textWidth</span><span class="s5"> </span><span class="s4">+</span><span class="s5"> </span><span class="s4">"</span><span class="s11">px</span><span class="s4">";</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">underlineInner</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">width</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">textWidth</span><span class="s5"> </span><span class="s4">+</span><span class="s5"> </span><span class="s4">"</span><span class="s11">px</span><span class="s4">";</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// --- Prevent text jump: lock glitch-container position and height strictly ---</i><i></i></span></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">fixGlitchContainerPosition</span><span class="s5">()</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">glitchContainer</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">document</span><span class="s4">.</span><span class="s12">querySelector</span><span class="s5">(</span><span class="s4">'</span><span class="s1">.glitch-container</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">textEl</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">'</span><span class="s11">glitch-white</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s1">glitchContainer</span><span class="s5"> </span><span class="s9">&amp;&amp;</span><span class="s5"> </span><span class="s1">textEl</span><span class="s5">) {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">rect</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">textEl</span><span class="s4">.</span><span class="s1">getBoundingClientRect</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">glitchContainer</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">position</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">fixed</span><span class="s4">';</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">glitchContainer</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">top</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">50%</span><span class="s4">';</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">glitchContainer</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">left</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">0</span><span class="s4">';</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">glitchContainer</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">width</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">100%</span><span class="s4">';</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">glitchContainer</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">translateY(-50%)</span><span class="s4">';</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">glitchContainer</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">zIndex</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">20</span><span class="s4">';</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">glitchContainer</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">textAlign</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">center</span><span class="s4">';</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">glitchContainer</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">height</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">rect</span><span class="s4">.</span><span class="s13">height</span><span class="s5"> </span><span class="s4">+</span><span class="s5"> </span><span class="s4">'</span><span class="s11">px</span><span class="s4">';</span><span class="s5"> </span><span class="s15"><i>// lock height</i><i></i></span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// Lock glitch-container height after text render to prevent jump</i><i></i></span></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">lockGlitchContainerHeight</span><span class="s5">()</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">glitchContainer</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">document</span><span class="s4">.</span><span class="s12">querySelector</span><span class="s5">(</span><span class="s4">'</span><span class="s1">.glitch-container</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">textEl</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">'</span><span class="s11">glitch-white</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s1">glitchContainer</span><span class="s5"> </span><span class="s9">&amp;&amp;</span><span class="s5"> </span><span class="s1">textEl</span><span class="s5">) {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">rect</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">textEl</span><span class="s4">.</span><span class="s1">getBoundingClientRect</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">glitchContainer</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">minHeight</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">rect</span><span class="s4">.</span><span class="s13">height</span><span class="s5"> </span><span class="s4">+</span><span class="s5"> </span><span class="s4">'</span><span class="s11">px</span><span class="s4">';</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">glitchContainer</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">height</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">rect</span><span class="s4">.</span><span class="s13">height</span><span class="s5"> </span><span class="s4">+</span><span class="s5"> </span><span class="s4">'</span><span class="s11">px</span><span class="s4">';</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// Apply glitch phrase with font</i><i></i></span></p>
-<p class="p11"><span class="s9">function</span><span class="s3"> </span><span class="s12">applyGlitch</span><span class="s5">(</span><span class="s1">phrase</span><span class="s4">,</span><span class="s3"> </span><span class="s1">glitchActive</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s6">false</span><span class="s5">)</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s1">fontSize</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">phrase</span><span class="s4">.</span><span class="s13">size</span><span class="s5"> </span><span class="s1">||</span><span class="s5"> </span><span class="s4">"</span><span class="s11">3.5vw</span><span class="s4">";</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s1">fontStyle</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">phrase</span><span class="s4">.</span><span class="s13">style</span><span class="s5"> </span><span class="s1">||</span><span class="s5"> </span><span class="s4">"</span><span class="s11">normal</span><span class="s4">";</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">font</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">phrase</span><span class="s4">.</span><span class="s13">font</span><span class="s4">;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s1">topOffset</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">phrase</span><span class="s4">.</span><span class="s13">raise</span><span class="s5"> </span><span class="s1">?</span><span class="s5"> </span><span class="s4">"</span><span class="s11">-3px</span><span class="s4">"</span><span class="s5"> </span><span class="s1">:</span><span class="s5"> </span><span class="s4">"</span><span class="s11">0px</span><span class="s4">";</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>[</span><span class="s13">white</span><span class="s4">,</span><span class="s1"> </span><span class="s13">r</span><span class="s4">,</span><span class="s1"> </span><span class="s13">g</span><span class="s4">,</span><span class="s1"> </span><span class="s13">b</span><span class="s1">]</span><span class="s4">.</span><span class="s12">forEach</span><span class="s1">(</span><span class="s14">el</span><span class="s1"> </span><span class="s9">=&gt;</span><span class="s1"> {</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">el</span><span class="s4">.</span><span class="s1">textContent</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">phrase</span><span class="s4">.</span><span class="s1">text</span><span class="s4">;</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">el</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s1">fontFamily</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s11">'</span><span class="s1">${</span><span class="s10">font</span><span class="s1">}</span><span class="s11">'</span><span class="s4">`;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">el</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">fontStyle</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">fontStyle</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">el</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">fontSize</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">fontSize</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">el</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">top</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s11">calc(50% + </span><span class="s13">${</span><span class="s1">topOffset</span><span class="s13">}</span><span class="s11">)</span><span class="s4">`;</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">el</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s1">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">el</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s1">transform</span><span class="s5"> </span><span class="s9">||</span><span class="s5"> </span><span class="s4">'</span><span class="s11">translateY(-50%)</span><span class="s4">';</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>})</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s1"><i>// Animate underline to match text width</i><i></i></span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">setTimeout</span><span class="s5">(() </span><span class="s9">=&gt;</span><span class="s5"> </span><span class="s1">updateUnderlineToText</span><span class="s5">(</span><span class="s10">phrase</span><span class="s5">)</span><span class="s4">,</span><span class="s5"> </span><span class="s6">10</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s1"><i>// Strictly fix glitch-container position to prevent jump</i><i></i></span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s12">setTimeout</span><span class="s5">(</span><span class="s1">fixGlitchContainerPosition</span><span class="s4">,</span><span class="s5"> </span><span class="s6">12</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s1"><i>// Lock glitch-container height after text render to prevent jump</i><i></i></span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s12">setTimeout</span><span class="s5">(</span><span class="s1">lockGlitchContainerHeight</span><span class="s4">,</span><span class="s5"> </span><span class="s6">12</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s9">!</span><span class="s1">glitchActive</span><span class="s5">) {</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">    </span>[</span><span class="s13">r</span><span class="s4">,</span><span class="s5"> </span><span class="s13">g</span><span class="s4">,</span><span class="s5"> </span><span class="s13">b</span><span class="s5">]</span><span class="s4">.</span><span class="s12">forEach</span><span class="s5">(</span><span class="s14">layer</span><span class="s5"> </span><span class="s9">=&gt;</span><span class="s5"> </span><span class="s10">layer</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s1">translateY(-50%) translateX(0)</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// Update glitch offset based on mouse movement</i><i></i></span></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">updateGlitchOffset</span><span class="s5">(</span><span class="s14">dx</span><span class="s4">,</span><span class="s3"> </span><span class="s14">dy</span><span class="s5">)</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">velocity</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s10">Math</span><span class="s4">.</span><span class="s12">sqrt</span><span class="s1">(</span><span class="s10">dx</span><span class="s1"> </span><span class="s4">*</span><span class="s1"> </span><span class="s10">dx</span><span class="s1"> </span><span class="s4">+</span><span class="s1"> </span><span class="s10">dy</span><span class="s1"> </span><span class="s4">*</span><span class="s1"> </span><span class="s10">dy</span><span class="s1">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">maxOffset</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">Math</span><span class="s4">.</span><span class="s12">min</span><span class="s5">(</span><span class="s1">velocity</span><span class="s5"> </span><span class="s4">*</span><span class="s5"> </span><span class="s6">0.06</span><span class="s4">,</span><span class="s5"> </span><span class="s6">6.4</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s1">angleRad</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">Math</span><span class="s4">.</span><span class="s12">atan2</span><span class="s5">(</span><span class="s10">dy</span><span class="s4">,</span><span class="s5"> </span><span class="s10">dx</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">x</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">Math</span><span class="s4">.</span><span class="s12">cos</span><span class="s5">(</span><span class="s1">angleRad</span><span class="s5">) </span><span class="s4">*</span><span class="s5"> </span><span class="s1">maxOffset</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">y</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">Math</span><span class="s4">.</span><span class="s12">sin</span><span class="s5">(</span><span class="s1">angleRad</span><span class="s5">) </span><span class="s4">*</span><span class="s5"> </span><span class="s1">maxOffset</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">r</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s1">translate(</span><span class="s13">${</span><span class="s4">-</span><span class="s10">x</span><span class="s13">}</span><span class="s1">px, </span><span class="s13">${</span><span class="s4">-</span><span class="s10">y</span><span class="s13">}</span><span class="s1">px) translateY(-50%)</span><span class="s4">`;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">g</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s1">translate(</span><span class="s13">${</span><span class="s10">x</span><span class="s13">}</span><span class="s1">px, </span><span class="s13">${</span><span class="s4">-</span><span class="s10">y</span><span class="s13">}</span><span class="s1">px) translateY(-50%)</span><span class="s4">`;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">b</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s1">translate(</span><span class="s13">${</span><span class="s10">x</span><span class="s13">}</span><span class="s1">px, </span><span class="s13">${</span><span class="s10">y</span><span class="s13">}</span><span class="s1">px) translateY(-50%)</span><span class="s4">`;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">mouseStopped</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s6">false</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">lastMove</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">Date</span><span class="s4">.</span><span class="s12">now</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">resetGlitch</span><span class="s5">()</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>[</span><span class="s13">r</span><span class="s4">,</span><span class="s1"> </span><span class="s13">g</span><span class="s4">,</span><span class="s1"> </span><span class="s13">b</span><span class="s1">]</span><span class="s4">.</span><span class="s12">forEach</span><span class="s1">(</span><span class="s14">layer</span><span class="s1"> </span><span class="s9">=&gt;</span><span class="s1"> {</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">layer</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s1">translateY(-50%) translateX(0)</span><span class="s4">';</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>})</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">mouseStopped</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s6">true</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">handleMouseMove</span><span class="s5">(</span><span class="s14">e</span><span class="s5">)</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">mouseX</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">e</span><span class="s4">.</span><span class="s13">clientX</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">mouseY</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">e</span><span class="s4">.</span><span class="s13">clientY</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">cursor</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">left</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s13">${</span><span class="s1">mouseX</span><span class="s13">}</span><span class="s11">px</span><span class="s4">`;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">cursor</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">top</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s13">${</span><span class="s1">mouseY</span><span class="s13">}</span><span class="s11">px</span><span class="s4">`;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s9">!</span><span class="s1">introAnimationComplete</span><span class="s5">) </span><span class="s9"><i>return</i></span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">dx</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">e</span><span class="s4">.</span><span class="s13">clientX</span><span class="s5"> </span><span class="s4">-</span><span class="s5"> </span><span class="s1">lastMouseX</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">dy</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">e</span><span class="s4">.</span><span class="s13">clientY</span><span class="s5"> </span><span class="s4">-</span><span class="s5"> </span><span class="s1">lastMouseY</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">lastMouseX</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">e</span><span class="s4">.</span><span class="s13">clientX</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">lastMouseY</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">e</span><span class="s4">.</span><span class="s13">clientY</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">updateGlitchOffset</span><span class="s5">(</span><span class="s10">dx</span><span class="s4">,</span><span class="s5"> </span><span class="s10">dy</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">updateWaveDistortion</span><span class="s5">(</span><span class="s10">e</span><span class="s4">.</span><span class="s13">clientX</span><span class="s5"> </span><span class="s4">/</span><span class="s5"> </span><span class="s10">window</span><span class="s4">.</span><span class="s13">innerWidth</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">movement</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s10">Math</span><span class="s4">.</span><span class="s12">sqrt</span><span class="s1">(</span><span class="s10">dx</span><span class="s1"> </span><span class="s4">*</span><span class="s1"> </span><span class="s10">dx</span><span class="s1"> </span><span class="s4">+</span><span class="s1"> </span><span class="s10">dy</span><span class="s1"> </span><span class="s4">*</span><span class="s1"> </span><span class="s10">dy</span><span class="s1">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">now</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s10">Date</span><span class="s4">.</span><span class="s12">now</span><span class="s1">()</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s1">now</span><span class="s5"> </span><span class="s4">-</span><span class="s5"> </span><span class="s1">lastPhaseChange</span><span class="s5"> </span><span class="s9">&gt;</span><span class="s5"> </span><span class="s6">100</span><span class="s5"> </span><span class="s9">&amp;&amp;</span><span class="s5"> </span><span class="s1">movement</span><span class="s5"> </span><span class="s9">&gt;</span><span class="s5"> </span><span class="s6">4</span><span class="s5">) {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">current</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> (</span><span class="s1">current</span><span class="s5"> </span><span class="s4">+</span><span class="s5"> </span><span class="s6">1</span><span class="s5">) </span><span class="s4">%</span><span class="s5"> </span><span class="s1">phrases</span><span class="s4">.</span><span class="s13">length</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">applyGlitch</span><span class="s5">(</span><span class="s10">phrases</span><span class="s5">[</span><span class="s13">current</span><span class="s5">]</span><span class="s4">,</span><span class="s5"> </span><span class="s6">true</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">lastPhaseChange</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">now</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">updateWaveDistortion</span><span class="s5">(</span><span class="s14">xPosition</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s6">0.5</span><span class="s5">)</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s1">distanceFromCenter</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">Math</span><span class="s4">.</span><span class="s12">abs</span><span class="s5">(</span><span class="s10">xPosition</span><span class="s5"> </span><span class="s4">-</span><span class="s5"> </span><span class="s6">0.75</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">intensity</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">Math</span><span class="s4">.</span><span class="s12">max</span><span class="s5">(</span><span class="s6">0</span><span class="s4">,</span><span class="s5"> </span><span class="s6">1</span><span class="s5"> </span><span class="s4">-</span><span class="s5"> </span><span class="s1">distanceFromCenter</span><span class="s5"> </span><span class="s4">*</span><span class="s5"> </span><span class="s6">2</span><span class="s5">) </span><span class="s4">*</span><span class="s5"> </span><span class="s6">0.7</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">waveMask</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">opacity</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s6">0.4</span><span class="s5"> </span><span class="s4">+</span><span class="s5"> (</span><span class="s1">intensity</span><span class="s5"> </span><span class="s4">*</span><span class="s5"> </span><span class="s6">0.5</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">baseFreqX</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s6">0.02</span><span class="s1"> </span><span class="s4">+</span><span class="s1"> (</span><span class="s10">intensity</span><span class="s1"> </span><span class="s4">*</span><span class="s1"> </span><span class="s6">0.02</span><span class="s1">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">baseFreqY</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s6">0.02</span><span class="s1"> </span><span class="s4">+</span><span class="s1"> (</span><span class="s10">intensity</span><span class="s1"> </span><span class="s4">*</span><span class="s1"> </span><span class="s6">0.02</span><span class="s1">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">turbulence</span><span class="s4">.</span><span class="s12">setAttribute</span><span class="s5">(</span><span class="s4">'</span><span class="s11">baseFrequency</span><span class="s4">',</span><span class="s5"> </span><span class="s4">`</span><span class="s13">${</span><span class="s1">baseFreqX</span><span class="s13">}</span><span class="s11"> </span><span class="s13">${</span><span class="s1">baseFreqY</span><span class="s13">}</span><span class="s4">`</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">animateWaves</span><span class="s5">()</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">waveTime</span><span class="s5"> </span><span class="s4">+=</span><span class="s5"> </span><span class="s6">0.01</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">timeX</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">Math</span><span class="s4">.</span><span class="s12">sin</span><span class="s5">(</span><span class="s1">waveTime</span><span class="s5">) </span><span class="s4">*</span><span class="s5"> </span><span class="s6">0.005</span><span class="s5"> </span><span class="s4">+</span><span class="s5"> </span><span class="s6">0.02</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">timeY</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s10">Math</span><span class="s4">.</span><span class="s12">cos</span><span class="s1">(</span><span class="s10">waveTime</span><span class="s1"> </span><span class="s4">*</span><span class="s1"> </span><span class="s6">0.8</span><span class="s1">) </span><span class="s4">*</span><span class="s1"> </span><span class="s6">0.005</span><span class="s1"> </span><span class="s4">+</span><span class="s1"> </span><span class="s6">0.02</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">turbulence</span><span class="s4">.</span><span class="s12">setAttribute</span><span class="s5">(</span><span class="s4">'</span><span class="s11">baseFrequency</span><span class="s4">',</span><span class="s5"> </span><span class="s4">`</span><span class="s13">${</span><span class="s1">timeX</span><span class="s13">}</span><span class="s11"> </span><span class="s13">${</span><span class="s1">timeY</span><span class="s13">}</span><span class="s4">`</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">opacityPulse</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> (</span><span class="s10">Math</span><span class="s4">.</span><span class="s12">sin</span><span class="s1">(</span><span class="s10">waveTime</span><span class="s1"> </span><span class="s4">*</span><span class="s1"> </span><span class="s6">2</span><span class="s1">) </span><span class="s4">*</span><span class="s1"> </span><span class="s6">0.15</span><span class="s1">) </span><span class="s4">+</span><span class="s1"> </span><span class="s6">0.45</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">waveMask</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">opacity</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">opacityPulse</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">turbulence</span><span class="s4">.</span><span class="s12">setAttribute</span><span class="s5">(</span><span class="s4">'</span><span class="s11">seed</span><span class="s4">',</span><span class="s5"> </span><span class="s1">Math</span><span class="s4">.</span><span class="s12">floor</span><span class="s5">(</span><span class="s1">waveTime</span><span class="s5"> </span><span class="s4">*</span><span class="s5"> </span><span class="s6">10</span><span class="s5">) </span><span class="s4">%</span><span class="s5"> </span><span class="s6">100</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">hideUnderline</span><span class="s5">()</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">underlineContainer</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">display</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">none</span><span class="s4">';</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">showCornerTitles</span><span class="s5">()</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">'</span><span class="s11">corner-photo</span><span class="s4">'</span><span class="s5">)</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">opacity</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">1</span><span class="s4">';</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">'</span><span class="s11">corner-film</span><span class="s4">'</span><span class="s5">)</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">opacity</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">1</span><span class="s4">';</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">'</span><span class="s11">corner-info</span><span class="s4">'</span><span class="s5">)</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">opacity</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">1</span><span class="s4">';</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">'</span><span class="s11">corner-email</span><span class="s4">'</span><span class="s5">)</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">opacity</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">1</span><span class="s4">';</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">startIntroAnimation</span><span class="s5">()</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">applyGlitch</span><span class="s5">(</span><span class="s10">phrases</span><span class="s5">[</span><span class="s6">0</span><span class="s5">])</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">underlineContainer</span><span class="s4">.</span><span class="s1">getBoundingClientRect</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">underline</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">transition</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">none</span><span class="s4">';</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">underline</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s1">transformOrigin</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">left</span><span class="s4">';</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">underline</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">scaleX(0)</span><span class="s4">';</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">underline</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">opacity</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">1</span><span class="s4">';</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">underlineContainer</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">display</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">block</span><span class="s4">';</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">underlineContainer</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">opacity</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">1</span><span class="s4">';</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">window</span><span class="s4">.</span><span class="s1">getComputedStyle</span><span class="s5">(</span><span class="s10">underline</span><span class="s5">)</span><span class="s4">.</span><span class="s13">transform</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">setTimeout</span><span class="s5">(() </span><span class="s9">=&gt;</span><span class="s5"> {</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">underline</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transition</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s1">transform </span><span class="s13">${</span><span class="s16">TIMING</span><span class="s4">.</span><span class="s6">UNDERLINE_DRAW</span><span class="s13">}</span><span class="s1">ms cubic-bezier(0.25, 0.1, 0.25, 1)</span><span class="s4">`;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">underline</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">scaleX(1)</span><span class="s4">';</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">underline</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">opacity</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">1</span><span class="s4">';</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">setTimeout</span><span class="s5">(() </span><span class="s9">=&gt;</span><span class="s5"> {</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s10">underline</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transition</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s1">transform </span><span class="s13">${</span><span class="s16">TIMING</span><span class="s4">.</span><span class="s6">UNDERLINE_HIDE</span><span class="s13">}</span><span class="s1">ms cubic-bezier(0.25, 0.1, 0.25, 1)</span><span class="s4">`;</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s10">underline</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s1">transformOrigin</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">right</span><span class="s4">';</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">underline</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">scaleX(0)</span><span class="s4">';</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s12">setTimeout</span><span class="s1">(() </span><span class="s9">=&gt;</span><span class="s1"> {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">underlineContainer</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">display</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">none</span><span class="s4">';</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">setTimeout</span><span class="s1">(() </span><span class="s9">=&gt;</span><span class="s1"> {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s1">background</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">opacity</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">0</span><span class="s4">';</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s12">setTimeout</span><span class="s1">(() </span><span class="s9">=&gt;</span><span class="s1"> {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">introAnimationComplete</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s6">true</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">waveInterval</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s12">setInterval</span><span class="s5">(</span><span class="s1">animateWaves</span><span class="s4">,</span><span class="s5"> </span><span class="s6">16</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s10">waveMask</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">opacity</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s6">0.4</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">showCornerTitles</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p12"><span class="s5"><span class="Apple-converted-space">          </span>}</span><span class="s4">,</span><span class="s5"> </span><span class="s16">TIMING</span><span class="s4">.</span><span class="s1">BACKGROUND_FADE</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span>}</span><span class="s4">,</span><span class="s1"> </span><span class="s6">100</span><span class="s1">)</span><span class="s4">;</span></p>
-<p class="p12"><span class="s5"><span class="Apple-converted-space">      </span>}</span><span class="s4">,</span><span class="s5"> </span><span class="s16">TIMING</span><span class="s4">.</span><span class="s1">UNDERLINE_HIDE</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p12"><span class="s5"><span class="Apple-converted-space">    </span>}</span><span class="s4">,</span><span class="s5"> </span><span class="s16">TIMING</span><span class="s4">.</span><span class="s1">UNDERLINE_PAUSE</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p12"><span class="s5"><span class="Apple-converted-space">  </span>}</span><span class="s4">,</span><span class="s5"> </span><span class="s16">TIMING</span><span class="s4">.</span><span class="s1">START_DELAY</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">setPanelState</span><span class="s5">(</span><span class="s14">zone</span><span class="s5">)</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s1"><i>// Reset all</i><i></i></span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">leftPanel</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">remove</span><span class="s5">(</span><span class="s4">'</span><span class="s1">expanded</span><span class="s4">',</span><span class="s5"> </span><span class="s4">'</span><span class="s1">compressed</span><span class="s4">',</span><span class="s5"> </span><span class="s4">'</span><span class="s1">fullscreen</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">rightPanel</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">remove</span><span class="s5">(</span><span class="s4">'</span><span class="s1">expanded</span><span class="s4">',</span><span class="s5"> </span><span class="s4">'</span><span class="s1">compressed</span><span class="s4">',</span><span class="s5"> </span><span class="s4">'</span><span class="s1">fullscreen</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">leftProjects</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">remove</span><span class="s5">(</span><span class="s4">'</span><span class="s11">visible</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">rightProjects</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">remove</span><span class="s5">(</span><span class="s4">'</span><span class="s11">visible</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">glitchContainer</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">remove</span><span class="s5">(</span><span class="s4">'</span><span class="s11">fade</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">document</span><span class="s4">.</span><span class="s1">querySelectorAll</span><span class="s5">(</span><span class="s4">'</span><span class="s11">.project-title</span><span class="s4">'</span><span class="s5">)</span><span class="s4">.</span><span class="s1">forEach</span><span class="s5">(</span><span class="s14">el</span><span class="s5"> </span><span class="s9">=&gt;</span><span class="s5"> </span><span class="s10">el</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s1">remove</span><span class="s5">(</span><span class="s4">'</span><span class="s11">visible</span><span class="s4">'</span><span class="s5">))</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s1">fullscreenPanel</span><span class="s5">) </span><span class="s1">fullscreenPanel</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">remove</span><span class="s5">(</span><span class="s4">'</span><span class="s11">fullscreen</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">fullscreenPanel</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s6">null</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s9">if</span><span class="s1"> (</span><span class="s10">zone</span><span class="s1"> </span><span class="s9">===</span><span class="s1"> </span><span class="s4">'</span><span class="s11">left</span><span class="s4">'</span><span class="s1">) {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">leftPanel</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">add</span><span class="s5">(</span><span class="s4">'</span><span class="s11">expanded</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">rightPanel</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">add</span><span class="s5">(</span><span class="s4">'</span><span class="s11">compressed</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">leftProjects</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">add</span><span class="s5">(</span><span class="s4">'</span><span class="s11">visible</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">fadeInProjectTitles</span><span class="s5">(</span><span class="s10">leftProjects</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">glitchContainer</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">add</span><span class="s5">(</span><span class="s4">'</span><span class="s11">fade</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>} </span><span class="s9">else</span><span class="s1"> </span><span class="s9">if</span><span class="s1"> (</span><span class="s10">zone</span><span class="s1"> </span><span class="s9">===</span><span class="s1"> </span><span class="s4">'</span><span class="s11">right</span><span class="s4">'</span><span class="s1">) {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">rightPanel</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">add</span><span class="s5">(</span><span class="s4">'</span><span class="s11">expanded</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">leftPanel</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">add</span><span class="s5">(</span><span class="s4">'</span><span class="s1">compressed</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">rightProjects</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">add</span><span class="s5">(</span><span class="s4">'</span><span class="s11">visible</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">fadeInProjectTitles</span><span class="s5">(</span><span class="s10">rightProjects</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">glitchContainer</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">add</span><span class="s5">(</span><span class="s4">'</span><span class="s11">fade</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>} </span><span class="s9">else</span><span class="s1"> {</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1"><i>// center</i><i></i></span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">leftPanel</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">remove</span><span class="s5">(</span><span class="s4">'</span><span class="s1">expanded</span><span class="s4">',</span><span class="s5"> </span><span class="s4">'</span><span class="s1">compressed</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">rightPanel</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">remove</span><span class="s5">(</span><span class="s4">'</span><span class="s1">expanded</span><span class="s4">',</span><span class="s5"> </span><span class="s4">'</span><span class="s1">compressed</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">glitchContainer</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">remove</span><span class="s5">(</span><span class="s4">'</span><span class="s11">fade</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">fadeInProjectTitles</span><span class="s5">(</span><span class="s14">listContainer</span><span class="s5">)</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">titles</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">listContainer</span><span class="s4">.</span><span class="s1">querySelectorAll</span><span class="s5">(</span><span class="s4">'</span><span class="s11">.project-title</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s10">titles</span><span class="s4">.</span><span class="s12">forEach</span><span class="s1">((</span><span class="s14">el</span><span class="s4">,</span><span class="s1"> </span><span class="s14">i</span><span class="s1">) </span><span class="s9">=&gt;</span><span class="s1"> {</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s12">setTimeout</span><span class="s1">(() </span><span class="s9">=&gt;</span><span class="s1"> </span><span class="s10">el</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">add</span><span class="s1">(</span><span class="s4">'</span><span class="s11">visible</span><span class="s4">'</span><span class="s1">)</span><span class="s4">,</span><span class="s1"> </span><span class="s6">80</span><span class="s1"> </span><span class="s4">*</span><span class="s1"> </span><span class="s10">i</span><span class="s1">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>})</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">handleMouseMovePanel</span><span class="s5">(</span><span class="s14">e</span><span class="s5">)</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s1">fullscreenPanel</span><span class="s5">) </span><span class="s9"><i>return</i></span><span class="s4">;</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">x</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">e</span><span class="s4">.</span><span class="s1">clientX</span><span class="s5"> </span><span class="s4">/</span><span class="s5"> </span><span class="s10">window</span><span class="s4">.</span><span class="s1">innerWidth</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s9">if</span><span class="s1"> (</span><span class="s10">x</span><span class="s1"> </span><span class="s9">&lt;=</span><span class="s1"> </span><span class="s6">0.15</span><span class="s1">) {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s1">currentZone</span><span class="s5"> </span><span class="s9">!==</span><span class="s5"> </span><span class="s4">'</span><span class="s11">left</span><span class="s4">'</span><span class="s5">) {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">setPanelState</span><span class="s5">(</span><span class="s4">'</span><span class="s11">left</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">currentZone</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">left</span><span class="s4">';</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>} </span><span class="s9">else</span><span class="s1"> </span><span class="s9">if</span><span class="s1"> (</span><span class="s10">x</span><span class="s1"> </span><span class="s9">&gt;=</span><span class="s1"> </span><span class="s6">0.85</span><span class="s1">) {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s1">currentZone</span><span class="s5"> </span><span class="s9">!==</span><span class="s5"> </span><span class="s4">'</span><span class="s11">right</span><span class="s4">'</span><span class="s5">) {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">setPanelState</span><span class="s5">(</span><span class="s4">'</span><span class="s11">right</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">currentZone</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">right</span><span class="s4">';</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>} </span><span class="s9">else</span><span class="s1"> {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s1">currentZone</span><span class="s5"> </span><span class="s9">!==</span><span class="s5"> </span><span class="s4">'</span><span class="s11">center</span><span class="s4">'</span><span class="s5">) {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">setPanelState</span><span class="s5">(</span><span class="s4">'</span><span class="s11">center</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">currentZone</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">center</span><span class="s4">';</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// Fullscreen on project hover</i><i></i></span></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">handleProjectHover</span><span class="s5">(</span><span class="s14">e</span><span class="s5">)</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s1">fullscreenPanel</span><span class="s5">) </span><span class="s9"><i>return</i></span><span class="s4">;</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">parentPanel</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">e</span><span class="s4">.</span><span class="s1">currentTarget</span><span class="s4">.</span><span class="s12">closest</span><span class="s5">(</span><span class="s4">'</span><span class="s11">.panel</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">parentPanel</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">add</span><span class="s5">(</span><span class="s4">'</span><span class="s11">fullscreen</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">fullscreenPanel</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">parentPanel</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">handleProjectLeave</span><span class="s5">(</span><span class="s14">e</span><span class="s5">)</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s9">!</span><span class="s1">fullscreenPanel</span><span class="s5">) </span><span class="s9"><i>return</i></span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">fullscreenPanel</span><span class="s4">.</span><span class="s13">classList</span><span class="s4">.</span><span class="s12">remove</span><span class="s5">(</span><span class="s4">'</span><span class="s11">fullscreen</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">fullscreenPanel</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s6">null</span><span class="s4">;</span></p>
-<p class="p1"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s12">setPanelState</span><span class="s5">(</span><span class="s10">currentZone</span><span class="s5">)</span><span class="s4">;</span><span class="s5"> </span><span class="s1"><i>// restore zone state</i><i></i></span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// --- Vimeo Responsive Embeds for Right Panel ---</i><i></i></span></p>
-<p class="p2"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s1">vimeoEmbeds</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s5">[</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s4">`</span><span class="s1">&lt;div style="padding:177.78% 0 0 0;position:relative;"&gt;&lt;iframe src="https://player.vimeo.com/video/1077804813?h=7437a21e45&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="G6 Film Studios"&gt;&lt;/iframe&gt;&lt;/div&gt;</span><span class="s4">`,</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s4">`</span><span class="s1">&lt;div style="padding:177.78% 0 0 0;position:relative;"&gt;&lt;iframe src="https://player.vimeo.com/video/1077810709?h=c0de2f83cd&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Superba instagram reel"&gt;&lt;/iframe&gt;&lt;/div&gt;</span><span class="s4">`,</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s4">`</span><span class="s1">&lt;div style="padding:56.25% 0 0 0;position:relative;"&gt;&lt;iframe src="https://player.vimeo.com/video/1077804882?h=e06c9f3145&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="mini mes bts v1"&gt;&lt;/iframe&gt;&lt;/div&gt;</span><span class="s4">`</span></p>
-<p class="p4"><span class="s1">]</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p6"><span class="s10">document</span><span class="s4">.</span><span class="s12">querySelectorAll</span><span class="s5">(</span><span class="s4">'</span><span class="s1">.right-panel .project-title</span><span class="s4">'</span><span class="s5">)</span><span class="s4">.</span><span class="s12">forEach</span><span class="s5">((</span><span class="s14">el</span><span class="s4">,</span><span class="s3"> </span><span class="s14">idx</span><span class="s5">)</span><span class="s3"> </span><span class="s9">=&gt;</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">preview</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">el</span><span class="s4">.</span><span class="s12">querySelector</span><span class="s5">(</span><span class="s4">'</span><span class="s1">.project-preview</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">el</span><span class="s4">.</span><span class="s1">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mouseenter</span><span class="s4">',</span><span class="s5"> () </span><span class="s9">=&gt;</span><span class="s5"> {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">preview</span><span class="s4">.</span><span class="s13">innerHTML</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">vimeoEmbeds</span><span class="s5">[</span><span class="s13">idx</span><span class="s5">]</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">handleProjectHover</span><span class="s5">({ </span><span class="s8">currentTarget</span><span class="s4">:</span><span class="s5"> </span><span class="s10">el</span><span class="s5"> })</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>})</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">el</span><span class="s4">.</span><span class="s1">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mouseleave</span><span class="s4">',</span><span class="s5"> () </span><span class="s9">=&gt;</span><span class="s5"> {</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">preview</span><span class="s4">.</span><span class="s1">innerHTML</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'';</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">handleProjectLeave</span><span class="s5">({ </span><span class="s8">currentTarget</span><span class="s4">:</span><span class="s5"> </span><span class="s10">el</span><span class="s5"> })</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>})</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">})</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// For left panel, keep previous logic</i><i></i></span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p6"><span class="s10">document</span><span class="s4">.</span><span class="s12">querySelectorAll</span><span class="s5">(</span><span class="s4">'</span><span class="s1">.left-panel .project-title</span><span class="s4">'</span><span class="s5">)</span><span class="s4">.</span><span class="s12">forEach</span><span class="s5">(</span><span class="s14">el</span><span class="s3"> </span><span class="s9">=&gt;</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">el</span><span class="s4">.</span><span class="s12">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mouseenter</span><span class="s4">',</span><span class="s5"> </span><span class="s1">handleProjectHover</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">el</span><span class="s4">.</span><span class="s12">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mouseleave</span><span class="s4">',</span><span class="s5"> </span><span class="s1">handleProjectLeave</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">})</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p10"><span class="s1">document</span><span class="s4">.</span><span class="s12">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mousemove</span><span class="s4">',</span><span class="s3"> </span><span class="s1">handleMouseMove</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s1">document</span><span class="s4">.</span><span class="s12">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mouseenter</span><span class="s4">',</span><span class="s3"> </span><span class="s5">()</span><span class="s3"> </span><span class="s9">=&gt;</span><span class="s3"> </span><span class="s5">{ </span><span class="s1">cursor</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">opacity</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">1</span><span class="s4">';</span><span class="s5"> })</span><span class="s4">;</span></p>
-<p class="p10"><span class="s1">document</span><span class="s4">.</span><span class="s12">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mouseleave</span><span class="s4">',</span><span class="s3"> </span><span class="s5">()</span><span class="s3"> </span><span class="s9">=&gt;</span><span class="s3"> </span><span class="s5">{ </span><span class="s1">cursor</span><span class="s4">.</span><span class="s1">style</span><span class="s4">.</span><span class="s13">opacity</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">0</span><span class="s4">';</span><span class="s5"> })</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s10">document</span><span class="s4">.</span><span class="s1">querySelectorAll</span><span class="s5">(</span><span class="s4">'</span><span class="s11">.project-title</span><span class="s4">'</span><span class="s5">)</span><span class="s4">.</span><span class="s1">forEach</span><span class="s5">(</span><span class="s14">el</span><span class="s3"> </span><span class="s9">=&gt;</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">el</span><span class="s4">.</span><span class="s12">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mouseenter</span><span class="s4">',</span><span class="s5"> </span><span class="s1">handleProjectHover</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">el</span><span class="s4">.</span><span class="s12">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mouseleave</span><span class="s4">',</span><span class="s5"> </span><span class="s1">handleProjectLeave</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">})</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// --- Project Title Hover Underline Logic ---</i><i></i></span></p>
-<p class="p7"><span class="s10">document</span><span class="s4">.</span><span class="s1">querySelectorAll</span><span class="s5">(</span><span class="s4">'</span><span class="s11">.project-title</span><span class="s4">'</span><span class="s5">)</span><span class="s4">.</span><span class="s1">forEach</span><span class="s5">(</span><span class="s14">el</span><span class="s3"> </span><span class="s9">=&gt;</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">el</span><span class="s4">.</span><span class="s1">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mouseenter</span><span class="s4">',</span><span class="s5"> () </span><span class="s9">=&gt;</span><span class="s5"> {</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">el</span><span class="s4">.</span><span class="s1">classList</span><span class="s4">.</span><span class="s12">add</span><span class="s5">(</span><span class="s4">'</span><span class="s11">hovered</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>})</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">el</span><span class="s4">.</span><span class="s1">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mouseleave</span><span class="s4">',</span><span class="s5"> () </span><span class="s9">=&gt;</span><span class="s5"> {</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">el</span><span class="s4">.</span><span class="s1">classList</span><span class="s4">.</span><span class="s12">remove</span><span class="s5">(</span><span class="s4">'</span><span class="s11">hovered</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>})</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">})</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p10"><span class="s1">window</span><span class="s4">.</span><span class="s12">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mousemove</span><span class="s4">',</span><span class="s3"> </span><span class="s1">handleMouseMovePanel</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s10">window</span><span class="s4">.</span><span class="s1">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mouseleave</span><span class="s4">',</span><span class="s3"> </span><span class="s5">()</span><span class="s3"> </span><span class="s9">=&gt;</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">setPanelState</span><span class="s5">(</span><span class="s4">'</span><span class="s11">center</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">currentZone</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s11">center</span><span class="s4">';</span></p>
-<p class="p4"><span class="s1">})</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// --- Ensure glitch text always visible initially ---</i><i></i></span></p>
-<p class="p7"><span class="s1">setPanelState</span><span class="s5">(</span><span class="s4">'</span><span class="s11">center</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// --- Left Panel: Swap Background on Hover ---</i><i></i></span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">leftBg</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">'</span><span class="s11">left-bg</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p6"><span class="s10">document</span><span class="s4">.</span><span class="s12">querySelectorAll</span><span class="s5">(</span><span class="s4">'</span><span class="s1">.left-panel .project-title</span><span class="s4">'</span><span class="s5">)</span><span class="s4">.</span><span class="s12">forEach</span><span class="s5">(</span><span class="s14">el</span><span class="s3"> </span><span class="s9">=&gt;</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">el</span><span class="s4">.</span><span class="s1">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mouseenter</span><span class="s4">',</span><span class="s5"> () </span><span class="s9">=&gt;</span><span class="s5"> {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">img</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">el</span><span class="s4">.</span><span class="s1">getAttribute</span><span class="s5">(</span><span class="s4">'</span><span class="s11">data-img</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s1">img</span><span class="s5">) </span><span class="s1">leftBg</span><span class="s4">.</span><span class="s13">src</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">img</span><span class="s4">;</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">el</span><span class="s4">.</span><span class="s1">classList</span><span class="s4">.</span><span class="s12">add</span><span class="s5">(</span><span class="s4">'</span><span class="s11">hovered</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">handleProjectHover</span><span class="s5">({ </span><span class="s8">currentTarget</span><span class="s4">:</span><span class="s5"> </span><span class="s10">el</span><span class="s5"> })</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>})</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">el</span><span class="s4">.</span><span class="s1">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mouseleave</span><span class="s4">',</span><span class="s5"> () </span><span class="s9">=&gt;</span><span class="s5"> {</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">leftBg</span><span class="s4">.</span><span class="s13">src</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">'</span><span class="s1">https://raw.githubusercontent.com/CreateWithEnso/enso-assets/main/2DF901D2-716B-401C-A64A-A128E67A1512_1_105_c.jpeg</span><span class="s4">';</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">el</span><span class="s4">.</span><span class="s1">classList</span><span class="s4">.</span><span class="s12">remove</span><span class="s5">(</span><span class="s4">'</span><span class="s11">hovered</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">handleProjectLeave</span><span class="s5">({ </span><span class="s8">currentTarget</span><span class="s4">:</span><span class="s5"> </span><span class="s10">el</span><span class="s5"> })</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>})</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">})</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// --- Right Panel: Swap Vimeo on Hover ---</i><i></i></span></p>
-<p class="p7"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">rightBg</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s10">document</span><span class="s4">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">'</span><span class="s11">right-bg</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p6"><span class="s2"><i>const</i></span><span class="s3"> </span><span class="s9">defaultVideo</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> </span><span class="s4">`</span><span class="s1">&lt;video id="background-video" autoplay loop muted playsinline&gt;&lt;source src="https://raw.githubusercontent.com/CreateWithEnso/enso-assets/main/temp%20showreel%201.mp4" type="video/mp4"&gt;&lt;/video&gt;</span><span class="s4">`;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p6"><span class="s10">document</span><span class="s4">.</span><span class="s12">querySelectorAll</span><span class="s5">(</span><span class="s4">'</span><span class="s1">.right-panel .project-title</span><span class="s4">'</span><span class="s5">)</span><span class="s4">.</span><span class="s12">forEach</span><span class="s5">(</span><span class="s14">el</span><span class="s3"> </span><span class="s9">=&gt;</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">el</span><span class="s4">.</span><span class="s1">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mouseenter</span><span class="s4">',</span><span class="s5"> () </span><span class="s9">=&gt;</span><span class="s5"> {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s9">vimeo</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">el</span><span class="s4">.</span><span class="s1">getAttribute</span><span class="s5">(</span><span class="s4">'</span><span class="s11">data-vimeo</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s9">if</span><span class="s1"> (</span><span class="s10">vimeo</span><span class="s1">) {</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s10">rightBg</span><span class="s4">.</span><span class="s13">innerHTML</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s1">&lt;iframe src='</span><span class="s13">${</span><span class="s10">vimeo</span><span class="s13">}</span><span class="s1">' width='100%' height='100%' frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen style='width:100%;height:100%;'&gt;&lt;/iframe&gt;</span><span class="s4">`;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">el</span><span class="s4">.</span><span class="s1">classList</span><span class="s4">.</span><span class="s12">add</span><span class="s5">(</span><span class="s4">'</span><span class="s11">hovered</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">handleProjectHover</span><span class="s5">({ </span><span class="s8">currentTarget</span><span class="s4">:</span><span class="s5"> </span><span class="s10">el</span><span class="s5"> })</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>})</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">el</span><span class="s4">.</span><span class="s1">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mouseleave</span><span class="s4">',</span><span class="s5"> () </span><span class="s9">=&gt;</span><span class="s5"> {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">rightBg</span><span class="s4">.</span><span class="s13">innerHTML</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">defaultVideo</span><span class="s4">;</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s10">el</span><span class="s4">.</span><span class="s1">classList</span><span class="s4">.</span><span class="s12">remove</span><span class="s5">(</span><span class="s4">'</span><span class="s11">hovered</span><span class="s4">'</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">handleProjectLeave</span><span class="s5">({ </span><span class="s8">currentTarget</span><span class="s4">:</span><span class="s5"> </span><span class="s10">el</span><span class="s5"> })</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>})</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">})</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s10">window</span><span class="s4">.</span><span class="s1">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">DOMContentLoaded</span><span class="s4">',</span><span class="s3"> </span><span class="s5">()</span><span class="s3"> </span><span class="s9">=&gt;</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">setTimeout</span><span class="s5">(() </span><span class="s9">=&gt;</span><span class="s5"> {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">startIntroAnimation</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>}</span><span class="s4">,</span><span class="s1"> </span><span class="s6">200</span><span class="s1">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">})</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// =============================</i><i></i></span></p>
-<p class="p1"><span class="s1"><i>// GLITCH INTRO LOGIC (DESKTOP &amp; MOBILE, RUNS AFTER INTRO)</i><i></i></span></p>
-<p class="p1"><span class="s1"><i>// =============================</i><i></i></span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// This function is called after the intro animation (background fade &amp; corner titles)</i><i></i></span></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">startGlitchIntro</span><span class="s5">()</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s9">if</span><span class="s1"> (</span><span class="s10">mobile</span><span class="s1">) {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">mobileSequence</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>} </span><span class="s9">else</span><span class="s1"> {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">desktopIntroSequence</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// Desktop: Run short intro loop, then enable mouse interaction only</i><i></i></span></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">desktopIntroSequence</span><span class="s5">()</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s1">introSequence</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> [</span><span class="s6">0</span><span class="s4">,</span><span class="s5"> </span><span class="s6">1</span><span class="s4">,</span><span class="s5"> </span><span class="s6">3</span><span class="s4">,</span><span class="s5"> </span><span class="s6">5</span><span class="s5">]</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s2"><i>let</i></span><span class="s1"> </span><span class="s9">idx</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s6">0</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s9">function</span><span class="s5"> </span><span class="s1">cycleIntro</span><span class="s5">() {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s1">idx</span><span class="s5"> </span><span class="s9">&gt;=</span><span class="s5"> </span><span class="s1">introSequence</span><span class="s4">.</span><span class="s13">length</span><span class="s5">) {</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">      </span></span><span class="s1"><i>// After intro, enable mouse-driven glitch only</i><i></i></span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">document</span><span class="s4">.</span><span class="s12">addEventListener</span><span class="s5">(</span><span class="s4">'</span><span class="s11">mousemove</span><span class="s4">',</span><span class="s5"> </span><span class="s1">handleMouseMove</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s4">typeof</span><span class="s5"> </span><span class="s1">checkMouseInactivity</span><span class="s5"> </span><span class="s9">===</span><span class="s5"> </span><span class="s4">'</span><span class="s11">function</span><span class="s4">'</span><span class="s5">) </span><span class="s12">checkMouseInactivity</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s9"><i>return</i></span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s12">applyGlitch</span><span class="s5">(</span><span class="s10">phrases</span><span class="s5">[</span><span class="s1">introSequence</span><span class="s5">[</span><span class="s1">idx</span><span class="s5">]]</span><span class="s4">,</span><span class="s5"> </span><span class="s6">true</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s1">idx</span><span class="s5"> </span><span class="s9">&lt;</span><span class="s5"> </span><span class="s1">introSequence</span><span class="s4">.</span><span class="s13">length</span><span class="s5"> </span><span class="s4">-</span><span class="s5"> </span><span class="s6">1</span><span class="s5">) {</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2"><i>let</i></span><span class="s1"> </span><span class="s9">angle</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s6">0</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">interval</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s12">setInterval</span><span class="s1">(() </span><span class="s9">=&gt;</span><span class="s1"> {</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">x</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s10">Math</span><span class="s4">.</span><span class="s12">cos</span><span class="s1">(</span><span class="s10">angle</span><span class="s1">) </span><span class="s4">*</span><span class="s1"> </span><span class="s6">4</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">y</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s10">Math</span><span class="s4">.</span><span class="s12">sin</span><span class="s1">(</span><span class="s10">angle</span><span class="s1">) </span><span class="s4">*</span><span class="s1"> </span><span class="s6">2</span><span class="s4">;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s10">r</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s1">translate(</span><span class="s13">${</span><span class="s4">-</span><span class="s10">x</span><span class="s13">}</span><span class="s1">px, </span><span class="s13">${</span><span class="s4">-</span><span class="s10">y</span><span class="s13">}</span><span class="s1">px) translateY(-50%)</span><span class="s4">`;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s10">g</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s1">translate(</span><span class="s13">${</span><span class="s10">x</span><span class="s13">}</span><span class="s1">px, </span><span class="s13">${</span><span class="s4">-</span><span class="s10">y</span><span class="s13">}</span><span class="s1">px) translateY(-50%)</span><span class="s4">`;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s10">b</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s1">translate(</span><span class="s13">${</span><span class="s10">x</span><span class="s13">}</span><span class="s1">px, </span><span class="s13">${</span><span class="s10">y</span><span class="s13">}</span><span class="s1">px) translateY(-50%)</span><span class="s4">`;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s10">angle</span><span class="s1"> </span><span class="s4">+=</span><span class="s1"> </span><span class="s6">0.5</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span>}</span><span class="s4">,</span><span class="s1"> </span><span class="s6">16</span><span class="s1">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s12">setTimeout</span><span class="s1">(() </span><span class="s9">=&gt;</span><span class="s1"> {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">clearInterval</span><span class="s5">(</span><span class="s10">interval</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">resetGlitch</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s10">idx</span><span class="s4">++;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">cycleIntro</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span>}</span><span class="s4">,</span><span class="s1"> </span><span class="s6">50</span><span class="s1">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span>} </span><span class="s9">else</span><span class="s1"> {</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s12">setTimeout</span><span class="s1">(() </span><span class="s9">=&gt;</span><span class="s1"> {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">resetGlitch</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s10">idx</span><span class="s4">++;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">cycleIntro</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p1"><span class="s5"><span class="Apple-converted-space">      </span>}</span><span class="s4">,</span><span class="s5"> </span><span class="s6">1000</span><span class="s5">)</span><span class="s4">;</span><span class="s5"> </span><span class="s1"><i>// Pause on last phrase for a moment</i><i></i></span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">cycleIntro</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// Mobile: Run intro loop, then infinite auto-loop sequence</i><i></i></span></p>
-<p class="p7"><span class="s9">function</span><span class="s3"> </span><span class="s1">mobileSequence</span><span class="s5">()</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s1">introSequence</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> [</span><span class="s6">0</span><span class="s4">,</span><span class="s5"> </span><span class="s6">1</span><span class="s4">,</span><span class="s5"> </span><span class="s6">3</span><span class="s4">,</span><span class="s5"> </span><span class="s6">5</span><span class="s5">]</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s2"><i>let</i></span><span class="s1"> </span><span class="s9">idx</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s6">0</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s9">function</span><span class="s5"> </span><span class="s1">initialCycle</span><span class="s5">() {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s1">idx</span><span class="s5"> </span><span class="s9">&gt;=</span><span class="s5"> </span><span class="s1">introSequence</span><span class="s4">.</span><span class="s13">length</span><span class="s5">) {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">startRegularMobileCycle</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s9"><i>return</i></span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s12">applyGlitch</span><span class="s5">(</span><span class="s10">phrases</span><span class="s5">[</span><span class="s1">introSequence</span><span class="s5">[</span><span class="s1">idx</span><span class="s5">]]</span><span class="s4">,</span><span class="s5"> </span><span class="s6">true</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s1">idx</span><span class="s5"> </span><span class="s9">&lt;</span><span class="s5"> </span><span class="s1">introSequence</span><span class="s4">.</span><span class="s13">length</span><span class="s5"> </span><span class="s4">-</span><span class="s5"> </span><span class="s6">1</span><span class="s5">) {</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2"><i>let</i></span><span class="s1"> </span><span class="s9">angle</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s6">0</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">interval</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s12">setInterval</span><span class="s1">(() </span><span class="s9">=&gt;</span><span class="s1"> {</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">x</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s10">Math</span><span class="s4">.</span><span class="s12">cos</span><span class="s1">(</span><span class="s10">angle</span><span class="s1">) </span><span class="s4">*</span><span class="s1"> </span><span class="s6">4</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">y</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s10">Math</span><span class="s4">.</span><span class="s12">sin</span><span class="s1">(</span><span class="s10">angle</span><span class="s1">) </span><span class="s4">*</span><span class="s1"> </span><span class="s6">2</span><span class="s4">;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s10">r</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s1">translate(</span><span class="s13">${</span><span class="s4">-</span><span class="s10">x</span><span class="s13">}</span><span class="s1">px, </span><span class="s13">${</span><span class="s4">-</span><span class="s10">y</span><span class="s13">}</span><span class="s1">px) translateY(-50%)</span><span class="s4">`;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s10">g</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s1">translate(</span><span class="s13">${</span><span class="s10">x</span><span class="s13">}</span><span class="s1">px, </span><span class="s13">${</span><span class="s4">-</span><span class="s10">y</span><span class="s13">}</span><span class="s1">px) translateY(-50%)</span><span class="s4">`;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s10">b</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s1">translate(</span><span class="s13">${</span><span class="s10">x</span><span class="s13">}</span><span class="s1">px, </span><span class="s13">${</span><span class="s10">y</span><span class="s13">}</span><span class="s1">px) translateY(-50%)</span><span class="s4">`;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s10">angle</span><span class="s1"> </span><span class="s4">+=</span><span class="s1"> </span><span class="s6">0.5</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span>}</span><span class="s4">,</span><span class="s1"> </span><span class="s6">16</span><span class="s1">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s12">setTimeout</span><span class="s1">(() </span><span class="s9">=&gt;</span><span class="s1"> {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">clearInterval</span><span class="s5">(</span><span class="s10">interval</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">resetGlitch</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s10">idx</span><span class="s4">++;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">initialCycle</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span>}</span><span class="s4">,</span><span class="s1"> </span><span class="s6">50</span><span class="s1">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span>} </span><span class="s9">else</span><span class="s1"> {</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s12">setTimeout</span><span class="s1">(() </span><span class="s9">=&gt;</span><span class="s1"> {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">resetGlitch</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">startRegularMobileCycle</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span>}</span><span class="s4">,</span><span class="s1"> </span><span class="s6">1000</span><span class="s1">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s9">function</span><span class="s5"> </span><span class="s1">startRegularMobileCycle</span><span class="s5">() {</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s1">sequence</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> [</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s6">0</span><span class="s4">,</span><span class="s1"> </span><span class="s6">1</span><span class="s4">,</span><span class="s1"> </span><span class="s6">2</span><span class="s4">,</span><span class="s1"> </span><span class="s6">3</span><span class="s4">,</span><span class="s1"> </span><span class="s6">4</span><span class="s4">,</span><span class="s1"> </span><span class="s6">5</span><span class="s4">,</span><span class="s1"> [</span><span class="s6">5</span><span class="s4">,</span><span class="s1"> </span><span class="s6">2000</span><span class="s1">]</span><span class="s4">,</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s6">6</span><span class="s4">,</span><span class="s1"> </span><span class="s6">7</span><span class="s4">,</span><span class="s1"> </span><span class="s6">8</span><span class="s4">,</span><span class="s1"> </span><span class="s6">9</span><span class="s4">,</span><span class="s1"> </span><span class="s6">10</span><span class="s4">,</span><span class="s1"> </span><span class="s6">11</span><span class="s4">,</span><span class="s1"> [</span><span class="s6">11</span><span class="s4">,</span><span class="s1"> </span><span class="s6">2000</span><span class="s1">]</span><span class="s4">,</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s6">8</span><span class="s4">,</span><span class="s1"> </span><span class="s6">9</span><span class="s4">,</span><span class="s1"> </span><span class="s6">10</span><span class="s4">,</span><span class="s1"> </span><span class="s6">11</span><span class="s4">,</span><span class="s1"> </span><span class="s6">0</span><span class="s4">,</span><span class="s1"> </span><span class="s6">1</span><span class="s4">,</span><span class="s1"> </span><span class="s6">2</span><span class="s4">,</span><span class="s1"> [</span><span class="s6">2</span><span class="s4">,</span><span class="s1"> </span><span class="s6">2000</span><span class="s1">]</span><span class="s4">,</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s6">3</span><span class="s4">,</span><span class="s1"> </span><span class="s6">4</span><span class="s4">,</span><span class="s1"> </span><span class="s6">5</span><span class="s4">,</span><span class="s1"> </span><span class="s6">6</span><span class="s4">,</span><span class="s1"> </span><span class="s6">7</span><span class="s4">,</span><span class="s1"> </span><span class="s6">8</span><span class="s4">,</span><span class="s1"> </span><span class="s6">9</span><span class="s4">,</span><span class="s1"> </span><span class="s6">10</span><span class="s4">,</span><span class="s1"> </span><span class="s6">11</span><span class="s4">,</span><span class="s1"> [</span><span class="s6">4</span><span class="s4">,</span><span class="s1"> </span><span class="s6">2000</span><span class="s1">]</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span>]</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2"><i>let</i></span><span class="s1"> </span><span class="s9">seqIdx</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s6">0</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2"><i>async</i></span><span class="s1"> </span><span class="s9">function</span><span class="s1"> </span><span class="s12">loop</span><span class="s1">() {</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s9">while</span><span class="s1"> (</span><span class="s6">true</span><span class="s1">) {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s2"><i>let</i></span><span class="s5"> </span><span class="s9">entry</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">sequence</span><span class="s5">[</span><span class="s13">seqIdx</span><span class="s5"> </span><span class="s4">%</span><span class="s5"> </span><span class="s1">sequence</span><span class="s4">.</span><span class="s13">length</span><span class="s5">]</span><span class="s4">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s2"><i>let</i></span><span class="s5"> </span><span class="s9">phraseIndex</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s1">Array</span><span class="s4">.</span><span class="s12">isArray</span><span class="s5">(</span><span class="s1">entry</span><span class="s5">) </span><span class="s9">?</span><span class="s5"> </span><span class="s1">entry</span><span class="s5">[</span><span class="s6">0</span><span class="s5">] </span><span class="s9">:</span><span class="s5"> </span><span class="s1">entry</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2"><i>let</i></span><span class="s1"> </span><span class="s9">delay</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s10">Array</span><span class="s4">.</span><span class="s12">isArray</span><span class="s1">(</span><span class="s10">entry</span><span class="s1">) </span><span class="s9">?</span><span class="s1"> </span><span class="s10">entry</span><span class="s1">[</span><span class="s6">1</span><span class="s1">] </span><span class="s9">:</span><span class="s1"> </span><span class="s6">100</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">applyGlitch</span><span class="s1">(</span><span class="s10">phrases</span><span class="s1">[</span><span class="s13">phraseIndex</span><span class="s1">]</span><span class="s4">,</span><span class="s1"> </span><span class="s10">delay</span><span class="s1"> </span><span class="s9">&lt;</span><span class="s1"> </span><span class="s6">1000</span><span class="s1">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s9">if</span><span class="s1"> (</span><span class="s10">delay</span><span class="s1"> </span><span class="s9">&lt;</span><span class="s1"> </span><span class="s6">1000</span><span class="s1">) {</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s2"><i>let</i></span><span class="s1"> </span><span class="s9">angle</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s6">0</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">interval</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s12">setInterval</span><span class="s1">(() </span><span class="s9">=&gt;</span><span class="s1"> {</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">x</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s10">Math</span><span class="s4">.</span><span class="s12">cos</span><span class="s1">(</span><span class="s10">angle</span><span class="s1">) </span><span class="s4">*</span><span class="s1"> </span><span class="s6">3</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2"><i>const</i></span><span class="s1"> </span><span class="s9">y</span><span class="s1"> </span><span class="s4">=</span><span class="s1"> </span><span class="s10">Math</span><span class="s4">.</span><span class="s12">sin</span><span class="s1">(</span><span class="s10">angle</span><span class="s1">) </span><span class="s4">*</span><span class="s1"> </span><span class="s6">1.5</span><span class="s4">;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s10">r</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s1">translate(</span><span class="s13">${</span><span class="s4">-</span><span class="s10">x</span><span class="s13">}</span><span class="s1">px, </span><span class="s13">${</span><span class="s4">-</span><span class="s10">y</span><span class="s13">}</span><span class="s1">px) translateY(-50%)</span><span class="s4">`;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s10">g</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s1">translate(</span><span class="s13">${</span><span class="s10">x</span><span class="s13">}</span><span class="s1">px, </span><span class="s13">${</span><span class="s4">-</span><span class="s10">y</span><span class="s13">}</span><span class="s1">px) translateY(-50%)</span><span class="s4">`;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s10">b</span><span class="s4">.</span><span class="s10">style</span><span class="s4">.</span><span class="s13">transform</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s4">`</span><span class="s1">translate(</span><span class="s13">${</span><span class="s10">x</span><span class="s13">}</span><span class="s1">px, </span><span class="s13">${</span><span class="s10">y</span><span class="s13">}</span><span class="s1">px) translateY(-50%)</span><span class="s4">`;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s10">angle</span><span class="s1"> </span><span class="s4">+=</span><span class="s1"> </span><span class="s6">0.25</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">          </span>}</span><span class="s4">,</span><span class="s1"> </span><span class="s6">16</span><span class="s1">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s9"><i>await</i></span><span class="s1"> </span><span class="s4">new</span><span class="s1"> </span><span class="s16">Promise</span><span class="s1">(</span><span class="s14">res</span><span class="s1"> </span><span class="s9">=&gt;</span><span class="s1"> </span><span class="s12">setTimeout</span><span class="s1">(</span><span class="s10">res</span><span class="s4">,</span><span class="s1"> </span><span class="s10">delay</span><span class="s1">))</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s1">clearInterval</span><span class="s5">(</span><span class="s10">interval</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span>} </span><span class="s9">else</span><span class="s1"> {</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s12">resetGlitch</span><span class="s1">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s9"><i>await</i></span><span class="s1"> </span><span class="s4">new</span><span class="s1"> </span><span class="s16">Promise</span><span class="s1">(</span><span class="s14">res</span><span class="s1"> </span><span class="s9">=&gt;</span><span class="s1"> </span><span class="s12">setTimeout</span><span class="s1">(</span><span class="s10">res</span><span class="s4">,</span><span class="s1"> </span><span class="s10">delay</span><span class="s1">))</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s10">seqIdx</span><span class="s4">++;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s12">loop</span><span class="s1">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">initialCycle</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">}</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s1"><i>// Patch: ensure glitch intro starts after background fade</i><i></i></span></p>
-<p class="p7"><span class="s5">(</span><span class="s9">function</span><span class="s3"> </span><span class="s1">patchGlitchIntroAfterIntro</span><span class="s5">()</span><span class="s3"> </span><span class="s5">{</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2"><i>const</i></span><span class="s5"> </span><span class="s1">origStartIntroAnimation</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s10">startIntroAnimation</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s10">window</span><span class="s4">.</span><span class="s1">startIntroAnimation</span><span class="s5"> </span><span class="s4">=</span><span class="s5"> </span><span class="s9">function</span><span class="s5">() {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">origStartIntroAnimation</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">setTimeout</span><span class="s5">(() </span><span class="s9">=&gt;</span><span class="s5"> {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s9">if</span><span class="s5"> (</span><span class="s1">introAnimationComplete</span><span class="s5">) {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">startGlitchIntro</span><span class="s5">()</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p12"><span class="s5"><span class="Apple-converted-space">    </span>}</span><span class="s4">,</span><span class="s5"> </span><span class="s16">TIMING</span><span class="s4">.</span><span class="s1">BACKGROUND_FADE</span><span class="s5"> </span><span class="s4">+</span><span class="s5"> </span><span class="s1">150</span><span class="s5">)</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">  </span>}</span><span class="s4">;</span></p>
-<p class="p4"><span class="s1">})()</span><span class="s4">;</span></p>
-</body>
-</html>
+// Animation sequence timing
+const TIMING = {
+  START_DELAY: 300,
+  UNDERLINE_DRAW: 300,
+  UNDERLINE_PAUSE: 400,
+  UNDERLINE_HIDE: 300,
+  BACKGROUND_FADE: 600
+};
+
+// Phrases for glitch animation
+const phrases = [
+  { text: "ENSO STUDIOS DANIEL VAMOSI", font: "Bodoni Moda", style: "italic" },
+  { text: "ENSO STUDIOS DANIEL VAMOSI", font: "Nunito" },
+  { text: "enso studios daniel vamosi", font: "Calistoga", style: "italic" },
+  { text: "ENSO STUDIOS DANIEL VAMOSI", font: "Barlow ExtraBold" },
+  { text: "ENSO STUDIOS DANIEL VAMOSI", font: "Pixels", size: "6.5vw", raise: true },
+  { text: "enso studios daniel vamosi", font: "IBM Plex Serif Thin", style: "italic" },
+  { text: "ENSO STUDIOS DANIEL VAMOSI", font: "Sofia Pro" },
+  { text: "[ en-so ] [ dan-yell ] [ vam-oh-see ]", font: "DM Mono", size: "2.975vw" },
+  { text: "endv", font: "Montserrat ExtraBold", style: "italic" },
+  { text: "e", font: "Rig Shaded", size: "4vw" },
+  { text: "E", font: "Bodoni Moda", style: "italic", size: "4vw" },
+  { text: "E", font: "Barlow ExtraBold", size: "4vw" }
+];
+
+// DOM elements
+const underline = document.getElementById("underline");
+const underlineMask = document.getElementById("underline-mask");
+const background = document.getElementById("background");
+const cursor = document.getElementById("cursor");
+const white = document.getElementById("glitch-white");
+const r = document.getElementById("glitch-r");
+const g = document.getElementById("glitch-g");
+const b = document.getElementById("glitch-b");
+const waveMask = document.getElementById("wave-mask");
+const turbulence = document.getElementById("turbulence");
+const video = document.getElementById("background-video");
+
+// Container elements
+const underlineContainer = document.querySelector(".underline-container");
+const underlineInner = document.querySelector(".underline-inner");
+const textWrapper = document.querySelector(".text-wrapper");
+
+// Panel elements
+const splitScreen = document.getElementById('split-screen');
+const leftPanel = document.getElementById('left-panel');
+const rightPanel = document.getElementById('right-panel');
+const leftProjects = document.getElementById('left-projects');
+const rightProjects = document.getElementById('right-projects');
+const glitchContainer = document.querySelector('.glitch-container');
+
+// Animation state
+let current = 0;
+let lastMove = Date.now();
+let lastPhaseChange = 0;
+let lastMouseX = 0;
+let lastMouseY = 0;
+let mobile = /Mobi|Android/i.test(navigator.userAgent);
+let mouseStopped = true;
+let introAnimationComplete = false;
+let mouseX = 0;
+let mouseY = 0;
+let waveTime = 0;
+let waveInterval;
+
+let currentZone = 'center'; // 'center' | 'left' | 'right'
+let fullscreenPanel = null;
+
+// Utility: measure glitch text width and update underline
+function updateUnderlineToText(phrase) {
+  const measure = document.getElementById("glitch-measure");
+  if (!measure) return;
+  measure.textContent = phrase.text;
+  measure.style.fontFamily = `'${phrase.font}'`;
+  measure.style.fontStyle = phrase.style || "normal";
+  measure.style.fontSize = phrase.size || "3.5vw";
+  let textWidth = measure.getBoundingClientRect().width;
+  // Add 0.3cm (0.15 left + 0.15 right) for buffer
+  const buffer = 0.3 * 37.7952755906; // 1cm = 37.795 px
+  textWidth += buffer;
+  const underlineContainer = document.querySelector(".underline-container");
+  const underlineInner = document.querySelector(".underline-inner");
+  underlineContainer.style.width = textWidth + "px";
+  underlineInner.style.width = textWidth + "px";
+}
+
+// --- Prevent text jump: lock glitch-container position and height strictly ---
+function fixGlitchContainerPosition() {
+  const glitchContainer = document.querySelector('.glitch-container');
+  const textEl = document.getElementById('glitch-white');
+  if (glitchContainer && textEl) {
+    const rect = textEl.getBoundingClientRect();
+    glitchContainer.style.position = 'fixed';
+    glitchContainer.style.top = '50%';
+    glitchContainer.style.left = '0';
+    glitchContainer.style.width = '100%';
+    glitchContainer.style.transform = 'translateY(-50%)';
+    glitchContainer.style.zIndex = '20';
+    glitchContainer.style.textAlign = 'center';
+    glitchContainer.style.height = rect.height + 'px'; // lock height
+  }
+}
+
+// Lock glitch-container height after text render to prevent jump
+function lockGlitchContainerHeight() {
+  const glitchContainer = document.querySelector('.glitch-container');
+  const textEl = document.getElementById('glitch-white');
+  if (glitchContainer && textEl) {
+    const rect = textEl.getBoundingClientRect();
+    glitchContainer.style.minHeight = rect.height + 'px';
+    glitchContainer.style.height = rect.height + 'px';
+  }
+}
+
+// Apply glitch phrase with font
+function applyGlitch(phrase, glitchActive = false) {
+  const fontSize = phrase.size || "3.5vw";
+  const fontStyle = phrase.style || "normal";
+  const font = phrase.font;
+  const topOffset = phrase.raise ? "-3px" : "0px";
+
+  [white, r, g, b].forEach(el => {
+    el.textContent = phrase.text;
+    el.style.fontFamily = `'${font}'`;
+    el.style.fontStyle = fontStyle;
+    el.style.fontSize = fontSize;
+    el.style.top = `calc(50% + ${topOffset})`;
+    el.style.transform = el.style.transform || 'translateY(-50%)';
+  });
+
+  // Animate underline to match text width
+  setTimeout(() => updateUnderlineToText(phrase), 10);
+  // Strictly fix glitch-container position to prevent jump
+  setTimeout(fixGlitchContainerPosition, 12);
+  // Lock glitch-container height after text render to prevent jump
+  setTimeout(lockGlitchContainerHeight, 12);
+
+  if (!glitchActive) {
+    [r, g, b].forEach(layer => layer.style.transform = 'translateY(-50%) translateX(0)');
+  }
+}
+
+// Update glitch offset based on mouse movement
+function updateGlitchOffset(dx, dy) {
+  const velocity = Math.sqrt(dx * dx + dy * dy);
+  const maxOffset = Math.min(velocity * 0.06, 6.4);
+  const angleRad = Math.atan2(dy, dx);
+
+  const x = Math.cos(angleRad) * maxOffset;
+  const y = Math.sin(angleRad) * maxOffset;
+
+  r.style.transform = `translate(${-x}px, ${-y}px) translateY(-50%)`;
+  g.style.transform = `translate(${x}px, ${-y}px) translateY(-50%)`;
+  b.style.transform = `translate(${x}px, ${y}px) translateY(-50%)`;
+
+  mouseStopped = false;
+  lastMove = Date.now();
+}
+
+function resetGlitch() {
+  [r, g, b].forEach(layer => {
+    layer.style.transform = 'translateY(-50%) translateX(0)';
+  });
+  mouseStopped = true;
+}
+
+function handleMouseMove(e) {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursor.style.left = `${mouseX}px`;
+  cursor.style.top = `${mouseY}px`;
+  if (!introAnimationComplete) return;
+  const dx = e.clientX - lastMouseX;
+  const dy = e.clientY - lastMouseY;
+  lastMouseX = e.clientX;
+  lastMouseY = e.clientY;
+  updateGlitchOffset(dx, dy);
+  updateWaveDistortion(e.clientX / window.innerWidth);
+  const movement = Math.sqrt(dx * dx + dy * dy);
+  const now = Date.now();
+  if (now - lastPhaseChange > 100 && movement > 4) {
+    current = (current + 1) % phrases.length;
+    applyGlitch(phrases[current], true);
+    lastPhaseChange = now;
+  }
+}
+
+function updateWaveDistortion(xPosition = 0.5) {
+  const distanceFromCenter = Math.abs(xPosition - 0.75);
+  const intensity = Math.max(0, 1 - distanceFromCenter * 2) * 0.7;
+  waveMask.style.opacity = 0.4 + (intensity * 0.5);
+  const baseFreqX = 0.02 + (intensity * 0.02);
+  const baseFreqY = 0.02 + (intensity * 0.02);
+  turbulence.setAttribute('baseFrequency', `${baseFreqX} ${baseFreqY}`);
+}
+
+function animateWaves() {
+  waveTime += 0.01;
+  const timeX = Math.sin(waveTime) * 0.005 + 0.02;
+  const timeY = Math.cos(waveTime * 0.8) * 0.005 + 0.02;
+  turbulence.setAttribute('baseFrequency', `${timeX} ${timeY}`);
+  const opacityPulse = (Math.sin(waveTime * 2) * 0.15) + 0.45;
+  waveMask.style.opacity = opacityPulse;
+  turbulence.setAttribute('seed', Math.floor(waveTime * 10) % 100);
+}
+
+function hideUnderline() {
+  underlineContainer.style.display = 'none';
+}
+
+function showCornerTitles() {
+  document.getElementById('corner-photo').style.opacity = '1';
+  document.getElementById('corner-film').style.opacity = '1';
+  document.getElementById('corner-info').style.opacity = '1';
+  document.getElementById('corner-email').style.opacity = '1';
+}
+
+function startIntroAnimation() {
+  applyGlitch(phrases[0]);
+  underlineContainer.getBoundingClientRect();
+  underline.style.transition = 'none';
+  underline.style.transformOrigin = 'left';
+  underline.style.transform = 'scaleX(0)';
+  underline.style.opacity = '1';
+  underlineContainer.style.display = 'block';
+  underlineContainer.style.opacity = '1';
+  window.getComputedStyle(underline).transform;
+  setTimeout(() => {
+    underline.style.transition = `transform ${TIMING.UNDERLINE_DRAW}ms cubic-bezier(0.25, 0.1, 0.25, 1)`;
+    underline.style.transform = 'scaleX(1)';
+    underline.style.opacity = '1';
+    setTimeout(() => {
+      underline.style.transition = `transform ${TIMING.UNDERLINE_HIDE}ms cubic-bezier(0.25, 0.1, 0.25, 1)`;
+      underline.style.transformOrigin = 'right';
+      underline.style.transform = 'scaleX(0)';
+      setTimeout(() => {
+        underlineContainer.style.display = 'none';
+        setTimeout(() => {
+          background.style.opacity = '0';
+          setTimeout(() => {
+            introAnimationComplete = true;
+            waveInterval = setInterval(animateWaves, 16);
+            waveMask.style.opacity = 0.4;
+            showCornerTitles();
+          }, TIMING.BACKGROUND_FADE);
+        }, 100);
+      }, TIMING.UNDERLINE_HIDE);
+    }, TIMING.UNDERLINE_PAUSE);
+  }, TIMING.START_DELAY);
+}
+
+function setPanelState(zone) {
+  // Reset all
+  leftPanel.classList.remove('expanded', 'compressed', 'fullscreen');
+  rightPanel.classList.remove('expanded', 'compressed', 'fullscreen');
+  leftProjects.classList.remove('visible');
+  rightProjects.classList.remove('visible');
+  glitchContainer.classList.remove('fade');
+  document.querySelectorAll('.project-title').forEach(el => el.classList.remove('visible'));
+  if (fullscreenPanel) fullscreenPanel.classList.remove('fullscreen');
+  fullscreenPanel = null;
+
+  if (zone === 'left') {
+    leftPanel.classList.add('expanded');
+    rightPanel.classList.add('compressed');
+    leftProjects.classList.add('visible');
+    fadeInProjectTitles(leftProjects);
+    glitchContainer.classList.add('fade');
+  } else if (zone === 'right') {
+    rightPanel.classList.add('expanded');
+    leftPanel.classList.add('compressed');
+    rightProjects.classList.add('visible');
+    fadeInProjectTitles(rightProjects);
+    glitchContainer.classList.add('fade');
+  } else {
+    // center
+    leftPanel.classList.remove('expanded', 'compressed');
+    rightPanel.classList.remove('expanded', 'compressed');
+    glitchContainer.classList.remove('fade');
+  }
+}
+
+function fadeInProjectTitles(listContainer) {
+  const titles = listContainer.querySelectorAll('.project-title');
+  titles.forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 80 * i);
+  });
+}
+
+function handleMouseMovePanel(e) {
+  if (fullscreenPanel) return;
+  const x = e.clientX / window.innerWidth;
+  if (x <= 0.15) {
+    if (currentZone !== 'left') {
+      setPanelState('left');
+      currentZone = 'left';
+    }
+  } else if (x >= 0.85) {
+    if (currentZone !== 'right') {
+      setPanelState('right');
+      currentZone = 'right';
+    }
+  } else {
+    if (currentZone !== 'center') {
+      setPanelState('center');
+      currentZone = 'center';
+    }
+  }
+}
+
+// Fullscreen on project hover
+function handleProjectHover(e) {
+  if (fullscreenPanel) return;
+  const parentPanel = e.currentTarget.closest('.panel');
+  parentPanel.classList.add('fullscreen');
+  fullscreenPanel = parentPanel;
+}
+function handleProjectLeave(e) {
+  if (!fullscreenPanel) return;
+  fullscreenPanel.classList.remove('fullscreen');
+  fullscreenPanel = null;
+  setPanelState(currentZone); // restore zone state
+}
+
+// --- Vimeo Responsive Embeds for Right Panel ---
+const vimeoEmbeds = [
+  `<div style="padding:177.78% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1077804813?h=7437a21e45&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="G6 Film Studios"></iframe></div>`,
+  `<div style="padding:177.78% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1077810709?h=c0de2f83cd&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Superba instagram reel"></iframe></div>`,
+  `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1077804882?h=e06c9f3145&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="mini mes bts v1"></iframe></div>`
+];
+
+document.querySelectorAll('.right-panel .project-title').forEach((el, idx) => {
+  const preview = el.querySelector('.project-preview');
+  el.addEventListener('mouseenter', () => {
+    preview.innerHTML = vimeoEmbeds[idx];
+    handleProjectHover({ currentTarget: el });
+  });
+  el.addEventListener('mouseleave', () => {
+    preview.innerHTML = '';
+    handleProjectLeave({ currentTarget: el });
+  });
+});
+
+// For left panel, keep previous logic
+
+document.querySelectorAll('.left-panel .project-title').forEach(el => {
+  el.addEventListener('mouseenter', handleProjectHover);
+  el.addEventListener('mouseleave', handleProjectLeave);
+});
+
+document.addEventListener('mousemove', handleMouseMove);
+document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
+document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; });
+
+document.querySelectorAll('.project-title').forEach(el => {
+  el.addEventListener('mouseenter', handleProjectHover);
+  el.addEventListener('mouseleave', handleProjectLeave);
+});
+
+// --- Project Title Hover Underline Logic ---
+document.querySelectorAll('.project-title').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    el.classList.add('hovered');
+  });
+  el.addEventListener('mouseleave', () => {
+    el.classList.remove('hovered');
+  });
+});
+
+window.addEventListener('mousemove', handleMouseMovePanel);
+window.addEventListener('mouseleave', () => {
+  setPanelState('center');
+  currentZone = 'center';
+});
+
+// --- Ensure glitch text always visible initially ---
+setPanelState('center');
+
+// --- Left Panel: Swap Background on Hover ---
+const leftBg = document.getElementById('left-bg');
+document.querySelectorAll('.left-panel .project-title').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    const img = el.getAttribute('data-img');
+    if (img) leftBg.src = img;
+    el.classList.add('hovered');
+    handleProjectHover({ currentTarget: el });
+  });
+  el.addEventListener('mouseleave', () => {
+    leftBg.src = 'https://raw.githubusercontent.com/CreateWithEnso/enso-assets/main/2DF901D2-716B-401C-A64A-A128E67A1512_1_105_c.jpeg';
+    el.classList.remove('hovered');
+    handleProjectLeave({ currentTarget: el });
+  });
+});
+
+// --- Right Panel: Swap Vimeo on Hover ---
+const rightBg = document.getElementById('right-bg');
+const defaultVideo = `<video id="background-video" autoplay loop muted playsinline><source src="https://raw.githubusercontent.com/CreateWithEnso/enso-assets/main/temp%20showreel%201.mp4" type="video/mp4"></video>`;
+
+document.querySelectorAll('.right-panel .project-title').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    const vimeo = el.getAttribute('data-vimeo');
+    if (vimeo) {
+      rightBg.innerHTML = `<iframe src='${vimeo}' width='100%' height='100%' frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen style='width:100%;height:100%;'></iframe>`;
+    }
+    el.classList.add('hovered');
+    handleProjectHover({ currentTarget: el });
+  });
+  el.addEventListener('mouseleave', () => {
+    rightBg.innerHTML = defaultVideo;
+    el.classList.remove('hovered');
+    handleProjectLeave({ currentTarget: el });
+  });
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    startIntroAnimation();
+  }, 200);
+});
+
+// =============================
+// GLITCH INTRO LOGIC (DESKTOP & MOBILE, RUNS AFTER INTRO)
+// =============================
+
+// This function is called after the intro animation (background fade & corner titles)
+function startGlitchIntro() {
+  if (mobile) {
+    mobileSequence();
+  } else {
+    desktopIntroSequence();
+  }
+}
+
+// Desktop: Run short intro loop, then enable mouse interaction only
+function desktopIntroSequence() {
+  const introSequence = [0, 1, 3, 5];
+  let idx = 0;
+  function cycleIntro() {
+    if (idx >= introSequence.length) {
+      // After intro, enable mouse-driven glitch only
+      document.addEventListener('mousemove', handleMouseMove);
+      if (typeof checkMouseInactivity === 'function') checkMouseInactivity();
+      return;
+    }
+    applyGlitch(phrases[introSequence[idx]], true);
+    if (idx < introSequence.length - 1) {
+      let angle = 0;
+      const interval = setInterval(() => {
+        const x = Math.cos(angle) * 4;
+        const y = Math.sin(angle) * 2;
+        r.style.transform = `translate(${-x}px, ${-y}px) translateY(-50%)`;
+        g.style.transform = `translate(${x}px, ${-y}px) translateY(-50%)`;
+        b.style.transform = `translate(${x}px, ${y}px) translateY(-50%)`;
+        angle += 0.5;
+      }, 16);
+      setTimeout(() => {
+        clearInterval(interval);
+        resetGlitch();
+        idx++;
+        cycleIntro();
+      }, 50);
+    } else {
+      setTimeout(() => {
+        resetGlitch();
+        idx++;
+        cycleIntro();
+      }, 1000); // Pause on last phrase for a moment
+    }
+  }
+  cycleIntro();
+}
+
+// Mobile: Run intro loop, then infinite auto-loop sequence
+function mobileSequence() {
+  const introSequence = [0, 1, 3, 5];
+  let idx = 0;
+  function initialCycle() {
+    if (idx >= introSequence.length) {
+      startRegularMobileCycle();
+      return;
+    }
+    applyGlitch(phrases[introSequence[idx]], true);
+    if (idx < introSequence.length - 1) {
+      let angle = 0;
+      const interval = setInterval(() => {
+        const x = Math.cos(angle) * 4;
+        const y = Math.sin(angle) * 2;
+        r.style.transform = `translate(${-x}px, ${-y}px) translateY(-50%)`;
+        g.style.transform = `translate(${x}px, ${-y}px) translateY(-50%)`;
+        b.style.transform = `translate(${x}px, ${y}px) translateY(-50%)`;
+        angle += 0.5;
+      }, 16);
+      setTimeout(() => {
+        clearInterval(interval);
+        resetGlitch();
+        idx++;
+        initialCycle();
+      }, 50);
+    } else {
+      setTimeout(() => {
+        resetGlitch();
+        startRegularMobileCycle();
+      }, 1000);
+    }
+  }
+  function startRegularMobileCycle() {
+    const sequence = [
+      0, 1, 2, 3, 4, 5, [5, 2000],
+      6, 7, 8, 9, 10, 11, [11, 2000],
+      8, 9, 10, 11, 0, 1, 2, [2, 2000],
+      3, 4, 5, 6, 7, 8, 9, 10, 11, [4, 2000]
+    ];
+    let seqIdx = 0;
+    async function loop() {
+      while (true) {
+        let entry = sequence[seqIdx % sequence.length];
+        let phraseIndex = Array.isArray(entry) ? entry[0] : entry;
+        let delay = Array.isArray(entry) ? entry[1] : 100;
+        applyGlitch(phrases[phraseIndex], delay < 1000);
+        if (delay < 1000) {
+          let angle = 0;
+          const interval = setInterval(() => {
+            const x = Math.cos(angle) * 3;
+            const y = Math.sin(angle) * 1.5;
+            r.style.transform = `translate(${-x}px, ${-y}px) translateY(-50%)`;
+            g.style.transform = `translate(${x}px, ${-y}px) translateY(-50%)`;
+            b.style.transform = `translate(${x}px, ${y}px) translateY(-50%)`;
+            angle += 0.25;
+          }, 16);
+          await new Promise(res => setTimeout(res, delay));
+          clearInterval(interval);
+        } else {
+          resetGlitch();
+          await new Promise(res => setTimeout(res, delay));
+        }
+        seqIdx++;
+      }
+    }
+    loop();
+  }
+  initialCycle();
+}
+
+// Patch: ensure glitch intro starts after background fade
+(function patchGlitchIntroAfterIntro() {
+  const origStartIntroAnimation = startIntroAnimation;
+  window.startIntroAnimation = function() {
+    origStartIntroAnimation();
+    setTimeout(() => {
+      if (introAnimationComplete) {
+        startGlitchIntro();
+      }
+    }, TIMING.BACKGROUND_FADE + 150);
+  };
+})();
