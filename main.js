@@ -323,29 +323,47 @@ function handleProjectLeave(e) {
 }
 
 // --- Vimeo Responsive Embeds for Right Panel ---
-const vimeoEmbeds = [
-  `<div style="padding:177.78% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1077804813?h=7437a21e45&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="G6 Film Studios"></iframe></div>`,
-  `<div style="padding:177.78% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1077810709?h=c0de2f83cd&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Superba instagram reel"></iframe></div>`,
-  `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1077804882?h=e06c9f3145&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="mini mes bts v1"></iframe></div>`
-];
-
-document.querySelectorAll('.right-panel .project-title').forEach((el, idx) => {
+document.querySelectorAll('.right-panel .project-title').forEach((el) => {
   const preview = el.querySelector('.project-preview');
+  const vimeoSrc = el.getAttribute('data-vimeo');
+  let vimeoEmbed = '';
+  if (vimeoSrc) {
+    // Responsive aspect ratio: 16:9 for first two, 9:16 for third (if desired)
+    const idx = el.getAttribute('data-index') || '';
+    const padding = idx === '2' ? '56.25%' : '177.78%';
+    vimeoEmbed = `<div style="padding:${padding} 0 0 0;position:relative;">
+      <iframe src="${vimeoSrc}" frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;"
+        title="Vimeo Preview"></iframe>
+    </div>`;
+  }
   el.addEventListener('mouseenter', () => {
-    preview.innerHTML = vimeoEmbeds[idx];
-    handleProjectHover({ currentTarget: el });
+    if (preview && vimeoEmbed) preview.innerHTML = vimeoEmbed;
+    el.classList.add('hovered');
+    if (typeof handleProjectHover === 'function') handleProjectHover({ currentTarget: el });
   });
   el.addEventListener('mouseleave', () => {
-    preview.innerHTML = '';
-    handleProjectLeave({ currentTarget: el });
+    if (preview) preview.innerHTML = '';
+    el.classList.remove('hovered');
+    if (typeof handleProjectLeave === 'function') handleProjectLeave({ currentTarget: el });
   });
 });
 
-// For left panel, keep previous logic
-
 document.querySelectorAll('.left-panel .project-title').forEach(el => {
-  el.addEventListener('mouseenter', handleProjectHover);
-  el.addEventListener('mouseleave', handleProjectLeave);
+  const preview = el.querySelector('.project-preview');
+  const img = el.getAttribute('data-img');
+  el.addEventListener('mouseenter', () => {
+    if (preview && img) preview.innerHTML = `<img src="${img}" alt="Preview">`;
+    el.classList.add('hovered');
+    if (typeof handleProjectHover === 'function') handleProjectHover({ currentTarget: el });
+  });
+  el.addEventListener('mouseleave', () => {
+    if (preview) preview.innerHTML = '';
+    el.classList.remove('hovered');
+    if (typeof handleProjectLeave === 'function') handleProjectLeave({ currentTarget: el });
+  });
 });
 
 document.addEventListener('mousemove', handleMouseMove);
@@ -395,28 +413,6 @@ document.querySelectorAll('.left-panel .project-title').forEach(el => {
 // --- Right Panel: Swap Vimeo on Hover ---
 const rightBg = document.getElementById('right-bg');
 const defaultVideo = `<video id="background-video" autoplay loop muted playsinline><source src="https://raw.githubusercontent.com/CreateWithEnso/enso-assets/main/temp%20showreel%201.mp4" type="video/mp4"></video>`;
-
-document.querySelectorAll('.right-panel .project-title').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    const vimeo = el.getAttribute('data-vimeo');
-    if (vimeo) {
-      rightBg.innerHTML = `<iframe src='${vimeo}' width='100%' height='100%' frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen style='width:100%;height:100%;'></iframe>`;
-    }
-    el.classList.add('hovered');
-    handleProjectHover({ currentTarget: el });
-  });
-  el.addEventListener('mouseleave', () => {
-    rightBg.innerHTML = defaultVideo;
-    el.classList.remove('hovered');
-    handleProjectLeave({ currentTarget: el });
-  });
-});
-
-window.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    startIntroAnimation();
-  }, 200);
-});
 
 // =============================
 // GLITCH INTRO LOGIC (DESKTOP & MOBILE, RUNS AFTER INTRO)
@@ -553,3 +549,9 @@ function mobileSequence() {
     }, TIMING.BACKGROUND_FADE + 150);
   };
 })();
+
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    startIntroAnimation();
+  }, 200);
+});
